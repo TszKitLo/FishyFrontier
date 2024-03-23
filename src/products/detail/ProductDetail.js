@@ -1,5 +1,5 @@
 import Image from "../../nillkin-case-1.jpg";
-import RelatedProduct from "./RelatedProduct";
+// import RelatedProduct from "./RelatedProduct";
 import Ratings from "react-ratings-declarative";
 import { Link } from "react-router-dom";
 import ScrollToTopOnMount from "../../template/ScrollToTopOnMount";
@@ -163,7 +163,7 @@ function ProductDetail() {
         </div>
       </div>
 
-      <div className="row">
+      {/* <div className="row">
         <div className="col-md-12 mb-4">
           <hr />
           <h4 className="text-muted my-4">Related products</h4>
@@ -175,7 +175,7 @@ function ProductDetail() {
             })}
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
