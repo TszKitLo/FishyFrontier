@@ -25,7 +25,7 @@ export default function ManageInventory() {
           <div class="input-group mb-3 mt-4">
             <input type="text" class="form-control" placeholder="Enter product name: " aria-label="Recipient's username" aria-describedby="basic-addon2" />
             <div class="input-group-append">
-              <button class="btn btn-outline-dark" type="button">Button</button>
+              <button class="btn btn-outline-dark" type="button">Search</button>
             </div>
           </div>
         </div>
@@ -55,7 +55,7 @@ export default function ManageInventory() {
                     <td>{result.itemNumber}</td>
                     <td>{result.description}</td>
                     <td>{result.stock}</td>
-                    <td>{result.price}</td>
+                    <td>${result.price}</td>
                     <td>{result.tax}</td>
                   </tr>
                  ))) : 
