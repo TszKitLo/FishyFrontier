@@ -3,6 +3,11 @@ import ProductDetail from "./products/detail/ProductDetail";
 import { Switch, Route } from "react-router-dom";
 import Landing from "./landing/Landing";
 import ProductList from "./products/ProductList";
+import ManageInventory from "./Pages/ManageInventory"
+import Order from "./Pages/Order"
+import PickingList from "./Pages/PickingList"
+import Setting from "./Pages/Setting"
+import ViewInventory from "./Pages/ViewInventory"
 
 function App() {
   return (
@@ -16,6 +21,21 @@ function App() {
         </Route>
         <Route path="/" exact>
           <Landing />
+        </Route>
+        <Route path="/manage-inventory">
+          <ManageInventory />
+        </Route>
+        <Route path="/order">
+          <Order />
+        </Route>
+        <Route path="/picking-list">
+          <PickingList />
+        </Route>
+        <Route path="/setting">
+          <Setting />
+        </Route>
+        <Route path="/view-inventory">
+          <ViewInventory />
         </Route>
       </Switch>
     </Template>
