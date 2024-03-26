@@ -1,6 +1,6 @@
 import SideBar from "../components/SideBar";
 
-export default function PickingList() {
+export default function ViewInventory() {
   return (
     <div className="container mt-5 py-4 px-xl-5">
       <div className="row mb-4 mt-lg-3">
@@ -11,7 +11,7 @@ export default function PickingList() {
         </div>
         <div className="col-lg-9">
           <div className="d-flex flex-column h-100">
-            <div className="row mb-3">Picking List</div>
+            <div className="row mb-3">View Inventory</div>
           </div>
         </div>
       </div>

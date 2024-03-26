@@ -3,10 +3,9 @@ import SideBar from "../../components/SideBar";
 import ScrollToTopOnMount from "../../template/ScrollToTopOnMount";
 
 function ProductDetail() {
-
   return (
     <div className="container mt-5 py-4 px-xl-1">
-      <ScrollToTopOnMount/>
+      <ScrollToTopOnMount />
 
       <div className="row mb-4">
         <div className="d-none d-lg-block col-lg-3 me-5">
