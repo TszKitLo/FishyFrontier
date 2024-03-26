@@ -1,10 +1,10 @@
 name: Fontend CI
 
 on:
-#   push:
-#     branches: [TestPage]
-  release:
-    types: [published]
+  push:
+    branches: [TestPage]
+  # release:
+  #   types: [published]
 #   pull_request:
 #     branches: [ TestPage ]
 
