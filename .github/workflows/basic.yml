@@ -28,9 +28,9 @@ jobs:
           name: nextjs artifacts
           path: out/
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
+  # deploy:
+  #   needs: build
+  #   runs-on: ubuntu-latest
 
     # steps:
     #   - uses: actions/checkout@v2
