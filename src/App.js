@@ -2,20 +2,19 @@ import Template from "./template/Template";
 import ProductDetail from "./products/detail/ProductDetail";
 import { Switch, Route } from "react-router-dom";
 import Landing from "./landing/Landing";
-import ProductList from "./products/ProductList";
-import ManageInventory from "./Pages/ManageInventory"
-import Order from "./Pages/Order"
-import PickingList from "./Pages/PickingList"
-import Setting from "./Pages/Setting"
-import ViewInventory from "./Pages/ViewInventory"
+import ManageInventory from "./Pages/ManageInventory";
+import Order from "./Pages/Order";
+import PickingList from "./Pages/PickingList";
+import Setting from "./Pages/Setting";
+import ViewInventory from "./Pages/ViewInventory";
 
 function App() {
   return (
     <Template>
       <Switch>
-        <Route path="/products" exact>
+        {/* <Route path="/products" exact>
           <ProductList />
-        </Route>
+        </Route> */}
         <Route path="/products/:slug">
           <ProductDetail />
         </Route>

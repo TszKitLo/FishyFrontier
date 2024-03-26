@@ -15,7 +15,7 @@ function Landing() {
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
         <div className="d-flex justify-content-center">
-          <Link to="/products" className="btn btn-primary" replace>
+          <Link to="/view-inventory" className="btn btn-primary" replace>
             Browse products
           </Link>
         </div>

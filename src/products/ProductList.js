@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Product from "./Product";
 import ProductH from "./ProductH";
-import SideBar from  "../components/SideBar"
+import SideBar from "../components/SideBar";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ScrollToTopOnMount from "../template/ScrollToTopOnMount";
@@ -18,7 +18,6 @@ const categories = [
 const brands = ["Apple", "Samsung", "Google", "HTC"];
 
 const manufacturers = ["HOCO", "Nillkin", "Remax", "Baseus"];
-
 
 function ProductList() {
   const [viewType, setViewType] = useState({ grid: true });
@@ -44,11 +43,11 @@ function ProductList() {
             </Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
-            Cases &amp; Covers 
+            Cases &amp; Covers
           </li>
         </ol>
       </nav>
-{/* 
+      {/* 
       <div className="h-scroller d-block d-lg-none">
         <nav className="nav h-underline">
           {categories.map((v, i) => {
