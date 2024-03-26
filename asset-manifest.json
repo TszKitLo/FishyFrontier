@@ -1,18 +1,17 @@
 {
   "files": {
-    "main.css": "/FishyFrontier/static/css/main.5d357f7f.css",
-    "main.js": "/FishyFrontier/static/js/main.2b94b97d.js",
-    "static/media/banner-2.jpg": "/FishyFrontier/static/media/banner-2.e792fe61a57973a5b60b.jpg",
-    "static/media/nillkin-case.webp": "/FishyFrontier/static/media/nillkin-case.39a022bd94e28dc6b955.webp",
-    "static/media/banner-1.jpg": "/FishyFrontier/static/media/banner-1.1f5bb6ba30a89f69db3e.jpg",
-    "static/media/nillkin-case-1.jpg": "/FishyFrontier/static/media/nillkin-case-1.60dec4fb7de719b33e51.jpg",
-    "static/media/banner-0.jpg": "/FishyFrontier/static/media/banner-0.83a86819981256ecaebe.jpg",
-    "index.html": "/FishyFrontier/index.html",
-    "main.5d357f7f.css.map": "/FishyFrontier/static/css/main.5d357f7f.css.map",
-    "main.2b94b97d.js.map": "/FishyFrontier/static/js/main.2b94b97d.js.map"
+    "main.css": "/react-ecommerce-template/static/css/main.51b270b5.css",
+    "main.js": "/react-ecommerce-template/static/js/main.ad8cc860.js",
+    "static/media/banner-2.jpg": "/react-ecommerce-template/static/media/banner-2.e792fe61a57973a5b60b.jpg",
+    "static/media/nillkin-case.webp": "/react-ecommerce-template/static/media/nillkin-case.39a022bd94e28dc6b955.webp",
+    "static/media/banner-1.jpg": "/react-ecommerce-template/static/media/banner-1.1f5bb6ba30a89f69db3e.jpg",
+    "static/media/banner-0.jpg": "/react-ecommerce-template/static/media/banner-0.83a86819981256ecaebe.jpg",
+    "index.html": "/react-ecommerce-template/index.html",
+    "main.51b270b5.css.map": "/react-ecommerce-template/static/css/main.51b270b5.css.map",
+    "main.ad8cc860.js.map": "/react-ecommerce-template/static/js/main.ad8cc860.js.map"
   },
   "entrypoints": [
-    "static/css/main.5d357f7f.css",
-    "static/js/main.2b94b97d.js"
+    "static/css/main.51b270b5.css",
+    "static/js/main.ad8cc860.js"
   ]
 }
