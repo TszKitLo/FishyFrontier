@@ -17,10 +17,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Run nextjs build
+      - name: Run  build
         run: |
           npm install
-          npm run build
+          npm build
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
@@ -32,13 +32,13 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
-        with:
-          name: nextjs artifacts
-          path: out
-      - name: Deploy to firebase hosting
-        run: |
-          npm install -g firebase-tools
-          firebase deploy --token ${{secrets.FIREBASE_TOKEN}}
+    # steps:
+    #   - uses: actions/checkout@v2
+    #   - uses: actions/download-artifact@v2
+    #     with:
+    #       name: nextjs artifacts
+    #       path: out
+    #   - name: Deploy to firebase hosting
+    #     run: |
+    #       npm install -g firebase-tools
+    #       firebase deploy --token ${{secrets.FIREBASE_TOKEN}}
