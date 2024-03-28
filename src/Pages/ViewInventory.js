@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Button, ButtonToolbar } from "react-bootstrap";
 import SideBar from "../components/SideBar";
 import FeatureProduct from "../landing/FeatureProduct";
-import PageBar from "../components/PageBar";
 
 export default function ViewInventory() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -10,6 +9,7 @@ export default function ViewInventory() {
   const handleSearch = () => {
     // todo: call api
   };
+
   const FilterBar = () => {
     return (
       <ButtonToolbar className="justify-content-between">
@@ -50,7 +50,11 @@ export default function ViewInventory() {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <div class="input-group-append">
-            <button class="btn btn-outline-dark" type="submit" onClick={handleSearch}>
+            <button
+              class="btn btn-outline-dark"
+              type="submit"
+              onClick={handleSearch}
+            >
               Search
             </button>
           </div>
@@ -58,6 +62,7 @@ export default function ViewInventory() {
       </ButtonToolbar>
     );
   };
+
   return (
     <div className="container mt-5 py-4 px-xl-5">
       <div className="row mb-4 mt-lg-3">
@@ -75,13 +80,12 @@ export default function ViewInventory() {
 
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
               {Array.from({ length: 9 }, (_, i) => {
-                return <FeatureProduct key={i} />;
+                return <FeatureProduct />;
               })}
             </div>
-
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 }

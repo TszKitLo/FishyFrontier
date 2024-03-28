@@ -28,6 +28,7 @@ export default function ManageInventory() {
                   placeholder="Enter product name: "
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
+                  onChange={(e) => setSearch(e)}
                 />
                 <div class="input-group-append">
                   <button class="btn btn-outline-dark" type="button">
