@@ -1,12 +1,13 @@
+import { Switch, Route } from "react-router-dom";
 import Template from "./template/Template";
 import ProductDetail from "./products/detail/ProductDetail";
-import { Switch, Route } from "react-router-dom";
 import Landing from "./landing/Landing";
 import ManageInventory from "./Pages/ManageInventory";
 import Order from "./Pages/Order";
 import PickingList from "./Pages/PickingList";
 import Setting from "./Pages/Setting";
 import ViewInventory from "./Pages/ViewInventory";
+import EditProductDetail from "./Pages/EditProductDetail";
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
         <Route path="/" exact>
           <Landing />
         </Route>
+        <Route path="/manage-inventory/:itemNumber">
+            <EditProductDetail />
+          </Route>
         <Route path="/manage-inventory">
           <ManageInventory />
         </Route>
