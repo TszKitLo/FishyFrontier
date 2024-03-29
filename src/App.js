@@ -23,8 +23,8 @@ function App() {
           <Landing />
         </Route>
         <Route path="/manage-inventory/:itemNumber">
-            <EditProductDetail />
-          </Route>
+          <EditProductDetail />
+        </Route>
         <Route path="/manage-inventory">
           <ManageInventory />
         </Route>

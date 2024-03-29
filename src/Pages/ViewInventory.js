@@ -1,10 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, ButtonToolbar } from "react-bootstrap";
 import SideBar from "../components/SideBar";
 import FeatureProduct from "../landing/FeatureProduct";
+import { ListProduct } from "../service/product-service";
 
 export default function ViewInventory() {
   const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const resp = await ListProduct();
+        console.log(resp);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  });
 
   const handleSearch = () => {
     // todo: call api
@@ -45,7 +58,7 @@ export default function ViewInventory() {
             placeholder="Search by name"
             aria-label="Recipient's username"
             aria-describedby="basic-addon2"
-            marginRight="10px"
+            style={{ marginRight: 10 }}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
