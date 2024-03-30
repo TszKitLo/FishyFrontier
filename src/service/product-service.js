@@ -8,6 +8,8 @@ export const ListProduct = async (
     apiUrl += `&name=${encodeURIComponent(productName)}`;
   }
 
+  console.log("apiUrl", apiUrl);
+
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) {
@@ -15,6 +17,7 @@ export const ListProduct = async (
       return new Error(`HTTP error! status: ${response.status}`);
     }
     const text = await response.text();
+    console.log(`api return: ${text}`)
     try {
       const data = JSON.parse(text);
       return data;
