@@ -11,9 +11,7 @@ export default function ViewInventory() {
     async function fetchData() {
       try {
         const resp = await ListProduct();
-        console.log(resp);
       } catch (error) {
-        console.log(error);
       }
     }
     fetchData();

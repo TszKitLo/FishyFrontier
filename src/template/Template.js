@@ -1,13 +1,17 @@
 import Header from "./Header";
 import Content from "./Content";
+import { OrderProvider } from "../salesContext";
 import Footer from "./Footer";
 
 function Template(props) {
   return (
     <>
-      <Header />
-      <Content>{props.children}</Content>
-      <Footer />
+      <OrderProvider>
+        {" "}
+        <Header />
+        <Content>{props.children}</Content>
+        <Footer />
+      </OrderProvider>
     </>
   );
 }

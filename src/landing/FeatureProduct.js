@@ -1,6 +1,7 @@
 import { Button, Modal } from "react-bootstrap";
 import Image from "../nillkin-case.webp";
 import { useState } from "react";
+import { useOrder } from "../salesContext";
 
 function FeatureProduct({
   id = "1",
@@ -13,7 +14,8 @@ function FeatureProduct({
 }) {
   const link = "#/products/" + id;
   const [show, setShow] = useState(false);
-
+  const [quantity, setQuantity] = useState(0)
+  const { order, addProduct } = useOrder()
   function ModalBody() {
     return (
       <div style={{ textAlign: "center" }}>
@@ -32,15 +34,20 @@ function FeatureProduct({
           {" "}
           {price} CAD {stock} in Stock{" "}
         </p>
-        <input type="number" placeholder="Quantity" min={0} />
+        <input type="number" placeholder="Quantity" min={0} onChange={(e) => setQuantity(e)} />
       </div>
     );
   }
 
   const handleOrder = () => {
-    setShow(false)
-    // todo: save to context 
-  }
+    setShow(false);
+    addProduct({
+      id, brand, name, size, price, quantity
+    })
+
+    console.log(`Order: ${order}`)
+    // todo: save to context
+  };
 
   return (
     <div className="col">
