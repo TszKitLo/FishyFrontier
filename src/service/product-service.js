@@ -1,10 +1,10 @@
 export const ListProduct = async (
   pageNo = 0,
   size = 9,
-  productName = undefined,
+  productName = "",
 ) => {
   let apiUrl = `${process.env.REACT_APP_API_URL}/product/list?page=${pageNo}&size=${size}`;
-  if (productName !== undefined) {
+  if (productName !== "") {
     apiUrl += `&name=${encodeURIComponent(productName)}`;
   }
 
