@@ -38,9 +38,11 @@ export default function ManageInventory() {
             </div>
             <div className="row">
               <div className="col-md-12 d-flex justify-content-end mt-4">
-                <button className="btn btn-outline-dark" type="button">
-                  Add new products
-                </button>
+                <Link to="/add-product">
+                  <button className="btn btn-outline-dark" type="button">
+                    Add new products
+                  </button>
+                </Link>
               </div>
             </div>
             <div className="row mt-4">

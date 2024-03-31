@@ -8,6 +8,7 @@ import PickingList from "./Pages/PickingList";
 import Setting from "./Pages/Setting";
 import ViewInventory from "./Pages/ViewInventory";
 import EditProductDetail from "./Pages/EditProductDetail";
+import AddNewProduct from "./Pages/AddNewProduct";
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
         </Route>
         <Route path="/manage-inventory">
           <ManageInventory />
+        </Route>
+        <Route path="/add-product">
+          <AddNewProduct />
         </Route>
         <Route path="/order">
           <Order />
