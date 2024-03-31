@@ -35,7 +35,7 @@ function Header() {
             }
           >
             <ul className="navbar-nav me-auto mb-lg-0">
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link
                   to="/products"
                   className="nav-link"
@@ -44,7 +44,7 @@ function Header() {
                 >
                   Explore
                 </Link>
-              </li>
+              </li> */}
             </ul>
             <Link to="/order">
               <button
