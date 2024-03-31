@@ -53,10 +53,12 @@ export default function ManageInventory() {
                     <thead className="table-dark">
                       <tr>
                         <th scope="col">Item Number</th>
-                        <th scope="col">Description</th>
+                        <th scope="col">Brand/Product</th>
+                        <th scope="col">Name(EN/CH)</th>
                         <th scope="col">Stock</th>
                         <th scope="col">Price</th>
                         <th scope="col">Tax</th>
+                        <th scope="col">Expiry Date</th>
                       </tr>
                     </thead>
                     <tbody>
