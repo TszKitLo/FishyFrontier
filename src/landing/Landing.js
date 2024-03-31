@@ -48,16 +48,27 @@ function Landing() {
   // );
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [user, setUser] = useState({username: "", password: ""});
 
   const handleLogin = () => {
-    if (username === "demo" && password === "password") {
+    if (user.username === "demo" && user.password === "password") {
       setLoggedIn(true);
     } else {
       alert("Invalid username or password");
     }
   };
+
+  console.log(user);
+
+  const handleChange = (e) =>{
+    e.preventDefault();
+    const {name, value} = e.target;
+    setUser((prevUser) => ({
+      ...prevUser, 
+      [name] : value,
+    }));
+  };
+
 
   if (loggedIn) {
     return <Redirect to="/view-inventory" />;
@@ -65,7 +76,7 @@ function Landing() {
 
   return (
     <div className="container mt-5">
-      <h2 className="text-center mb-4">Login</h2>
+      <h2 className="text-center mb-4 mt-5">Login</h2>
       <div className="row justify-content-center">
         <div className="col-md-4">
           <form>
@@ -76,9 +87,8 @@ function Landing() {
               <input
                 type="text"
                 className="form-control"
-                id="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                name="username"
+                onChange={handleChange}
               />
             </div>
             <div className="mb-3">
@@ -88,9 +98,8 @@ function Landing() {
               <input
                 type="password"
                 className="form-control"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                name="password"
+                onChange={handleChange}
               />
             </div>
             <button
