@@ -9,9 +9,11 @@ import Setting from "./Pages/Setting";
 import ViewInventory from "./Pages/ViewInventory";
 import EditProductDetail from "./Pages/EditProductDetail";
 import AddNewProduct from "./Pages/AddNewProduct";
+import { OrderProvider } from "./salesContext";
 
 function App() {
   return (
+  <OrderProvider>
     <Template>
       <Switch>
         {/* <Route path="/products" exact>
@@ -46,6 +48,7 @@ function App() {
         </Route>
       </Switch>
     </Template>
+  </OrderProvider>
   );
 }
 
