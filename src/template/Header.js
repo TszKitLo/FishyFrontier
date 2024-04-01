@@ -1,8 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useOrder } from "../salesContext";
 
 function Header() {
+
+  const {order} = useOrder();
+
   const [openedDrawer, setOpenedDrawer] = useState(false);
 
   function toggleDrawer() {
@@ -52,7 +56,7 @@ function Header() {
                 className="btn btn-outline-dark me-3 d-none d-lg-inline"
                 >
                 <FontAwesomeIcon icon={["fas", "shopping-cart"]} />
-                {/* <span className="ms-3 badge rounded-pill bg-dark">0</span> */}
+                <span className="ms-3 badge rounded-pill bg-dark">{order.length}</span>
               </button>
               </Link>
             <ul className="navbar-nav mb-2 mb-lg-0">

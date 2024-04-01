@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import { useOrder } from "../salesContext";
 
 function SideBar() {
+
+  const {order} = useOrder();
+
   return (
     <ul className="list-group list-group-flush rounded">
       <li className="list-group-item d-none d-lg-block">
@@ -24,7 +28,7 @@ function SideBar() {
             to="/order"
             className="btn btn-sm btn-outline-dark rounded-pill me-2 mb-4"
           >
-            Order
+            Order {order.length === 0 ? ("") : (`(${order.length})`)}
           </Link>
           <Link
             to="/picking-list"
