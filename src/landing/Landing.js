@@ -58,8 +58,6 @@ function Landing() {
     }
   };
 
-  console.log(user);
-
   const handleChange = (e) =>{
     e.preventDefault();
     const {name, value} = e.target;
@@ -76,7 +74,7 @@ function Landing() {
 
   return (
     <div className="container mt-5">
-      <h2 className="text-center mb-4 mt-5">Login</h2>
+      <h2 className="text-center mb-4 mt-5 pt-3">Login</h2>
       <div className="row justify-content-center">
         <div className="col-md-4">
           <form>

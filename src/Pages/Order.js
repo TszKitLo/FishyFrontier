@@ -1,14 +1,13 @@
 import SideBar from "../components/SideBar";
 import { useEffect, useState } from "react";
 
-
 export default function Order() {
   
-  const [todayDate, setTodayDate] = useState('');
+  // use order from useOrder later
 
   const [search, setSearch] = useState([
-    { itemNumber: "1", description: "Product A", stock: 10, price: 20, tax: 5 },
-    { itemNumber: "2", description: "Product B", stock: 15, price: 30, tax: 6 },
+    { product_id: "1", qty: 10, unit: "bag", price: 20, tax_amount: 5 },
+    { product_id: "2", qty: 15, unit: "bag", price: 30, tax_amount: 6 },
   ]);
 
   const [order, setOrder] = useState({});
@@ -22,13 +21,29 @@ export default function Order() {
     }));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(order);
+    // try {
+    //   const res = await fetch('/api/auth/signin', {
+    //     method : 'POST',
+    //     headers : {
+    //       'Content-Type' : 'application/json',
+    //     },
+    //     body : JSON.stringify(order),
+    //   });
+
+    //   navigate('/');
+    // } catch (error) {
+    //   console.log(error);;
+    // }
+  };
+
   useEffect(() => {
     const currentDate = new Date().toISOString().split('T')[0];
-    console.log(currentDate);
-    setTodayDate(currentDate);
+    setOrder({"order_create": currentDate, "details" : search});
   },[])
 
-  console.log(order)
 
   return (
     <div className="container mt-5 py-4 px-xl-5">
@@ -66,30 +81,30 @@ export default function Order() {
 
               <div className="row mb-3">
                   <div className="col-auto"> 
-                    <label htmlFor="orderDate" className="col-form-label">Order Date: </label>
+                    <label htmlFor="order_create" className="col-form-label">Order Date: </label>
                   </div>
                 <div className="col"> 
                   <input
                     type="date"
                     className="form-control"
-                    id="orderDate"
-                    name="orderDate"
+                    id="order_create"
+                    name="order_create"
                     onChange={handleChange}
-                    defaultValue={todayDate}
+                    defaultValue={order.order_create}
                   />
                 </div>
               </div>
 
               <div className="row mb-3">
                   <div className="col-auto"> 
-                    <label htmlFor="deliveryDate" className="col-form-label">Delivery Date: </label>
+                    <label htmlFor="expected_delivery_date" className="col-form-label">Delivery Date: </label>
                   </div>
                 <div className="col"> 
                   <input
                     type="date"
                     className="form-control"
-                    id="deliveryDate"
-                    name="deliveryDate"
+                    id="expected_delivery_date"
+                    name="expected_delivery_date"
                     onChange={handleChange}
                   />
                 </div>
@@ -141,12 +156,12 @@ export default function Order() {
                 </thead>
                 <tbody>
                   {search.map((result) => (
-                    <tr key={result.itemNumber}>
-                      <td>{result.itemNumber}</td>
-                      <td>{result.description}</td>
-                      <td>{result.stock}</td>
+                    <tr key={result.product_id}>
+                      <td>{result.product_id}</td>
+                      <td>{result.unit}</td>
+                      <td>{result.qty}</td>
                       <td>${result.price}</td>
-                      <td>{result.tax}</td>
+                      <td>{result.tax_amount}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -155,7 +170,7 @@ export default function Order() {
 
             <div className="col-lg-9 d-flex justify-content-end align-items-center mt-4">
               <button className="btn btn-outline-dark py-2 me-5">Back</button>
-              <button className="btn btn-dark ms-5">Confirm</button>
+              <button className="btn btn-dark ms-5" onClick={handleSubmit}>Confirm</button>
             </div>
             </div>
           </div>
