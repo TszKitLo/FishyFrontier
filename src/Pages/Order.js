@@ -1,5 +1,6 @@
 import SideBar from "../components/SideBar";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { CreateProduct } from "../service/create-order";
 
 export default function Order() {
@@ -195,7 +196,9 @@ export default function Order() {
               </div>
 
               <div className="col-lg-9 d-flex justify-content-end align-items-center mt-4">
-                <button className="btn btn-outline-dark py-2 me-5">Back</button>
+                <Link to="/view-inventory">
+                  <button className="btn btn-outline-dark py-2 me-5">Back</button>
+                </Link>
                 <button className="btn btn-dark ms-5" onClick={handleSubmit}>
                   Confirm
                 </button>
