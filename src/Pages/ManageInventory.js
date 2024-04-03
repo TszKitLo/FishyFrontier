@@ -17,7 +17,7 @@ export default function ManageInventory() {
       }
     }
     fetchData();
-  },[]);
+  }, []);
 
   const handleSearchInputChange = (event) => {
     setSearchInput(event.target.value);

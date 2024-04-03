@@ -1,10 +1,9 @@
 import Banner from "./Banner";
-import FeatureProduct from "./FeatureProduct";
+import FeatureProduct from "../components/FeatureProduct";
 import ScrollToTopOnMount from "../template/ScrollToTopOnMount";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
-
 
 function Landing() {
   // return (
@@ -48,7 +47,7 @@ function Landing() {
   // );
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState({username: "", password: ""});
+  const [user, setUser] = useState({ username: "", password: "" });
 
   const handleLogin = () => {
     if (user.username === "demo" && user.password === "password") {
@@ -58,15 +57,14 @@ function Landing() {
     }
   };
 
-  const handleChange = (e) =>{
+  const handleChange = (e) => {
     e.preventDefault();
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setUser((prevUser) => ({
-      ...prevUser, 
-      [name] : value,
+      ...prevUser,
+      [name]: value,
     }));
   };
-
 
   if (loggedIn) {
     return <Redirect to="/view-inventory" />;

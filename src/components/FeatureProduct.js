@@ -14,8 +14,10 @@ function FeatureProduct({
 }) {
   const link = "#/products/" + id;
   const [show, setShow] = useState(false);
-  const [quantity, setQuantity] = useState(0)
-  const { order, addProduct } = useOrder()
+  const [quantity, setQuantity] = useState(0);
+  const { order, addProduct } = useOrder();
+  const imageLink = `${process.env.REACT_APP_API_URL}${image}`
+  console.log('iamge link: ', imageLink);
   function ModalBody() {
     return (
       <div style={{ textAlign: "center" }}>
@@ -23,7 +25,7 @@ function FeatureProduct({
           className="card-img-top bg-dark cover"
           height="240"
           alt=""
-          src={image}
+          src={imageLink}
         />
         <p>
           {" "}
@@ -34,7 +36,12 @@ function FeatureProduct({
           {" "}
           {price} CAD {stock} in Stock{" "}
         </p>
-        <input type="number" placeholder="Quantity" min={0} onChange={(e) => setQuantity(e)} />
+        <input
+          type="number"
+          placeholder="Quantity"
+          min={0}
+          onChange={(e) => setQuantity(e)}
+        />
       </div>
     );
   }
@@ -42,10 +49,15 @@ function FeatureProduct({
   const handleOrder = () => {
     setShow(false);
     addProduct({
-      id, brand, name, size, price, quantity
-    })
+      id,
+      brand,
+      name,
+      size,
+      price,
+      quantity,
+    });
 
-    console.log(`Order: ${order}`)
+    console.log(`Order: ${order}`);
     // todo: save to context
   };
 
@@ -55,8 +67,9 @@ function FeatureProduct({
         <img
           className="card-img-top bg-dark cover"
           height="240"
+          width="auto"
           alt=""
-          src={image}
+          src={imageLink}
         />
         <div className="card-body">
           <h5 className="card-title text-center">{name}</h5>

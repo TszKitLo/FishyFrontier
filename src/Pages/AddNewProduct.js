@@ -141,9 +141,7 @@ function EditProductDetail() {
                       </Link>
                     </div>
                     <div className="col">
-                      <button className="btn btn-dark py-2 w-100">
-                        Save
-                      </button>
+                      <button className="btn btn-dark py-2 w-100">Save</button>
                     </div>
                   </div>
                 </form>
