@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button, ButtonToolbar } from "react-bootstrap";
 import SideBar from "../components/SideBar";
-import FeatureProduct from "../landing/FeatureProduct";
+import FeatureProduct from "../components/FeatureProduct";
 import { ListProduct } from "../service/product-service";
 
 export default function ViewInventory() {
