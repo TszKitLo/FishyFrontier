@@ -16,7 +16,7 @@ export default function ManageInventory() {
       }
     }
     fetchData();
-  },[]);
+  }, []);
 
   return (
     <div className="container mt-5 py-4 px-xl-5">

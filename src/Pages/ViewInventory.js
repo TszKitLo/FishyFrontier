@@ -35,7 +35,7 @@ export default function ViewInventory() {
               id={product.id}
               brand={product.productBrand.descriptionEng}
               name={product.descriptionEng}
-              iamgeLink={product.imageLink}
+              image={product.imageLink}
             />
           ))}
         </div>
