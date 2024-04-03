@@ -1,23 +1,15 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Image from "../nillkin-case-1.jpg";
 import SideBar from "../components/SideBar";
 import ScrollToTopOnMount from "../template/ScrollToTopOnMount";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 function EditProductDetail() {
-  // may use useParam for API call
   let location = useLocation();
-  // const [product, setProduct] = useState(location.state ? location.state.product : null);
-  const [product, setProduct] = useState({
-    name: "Product A",
-    description: "Product A 100g",
-    stock: 10,
-    cost: 20,
-    sales_price: 5,
-    item_number: "ABC123",
-    expiryDate: "2022-10-28",
-    location: "Shelf A22",
-  });
+  const [product, setProduct] = useState(location.state ? location.state.product : null);
+
+  console.log(product);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -54,7 +46,7 @@ function EditProductDetail() {
                         className="form-control"
                         id="name"
                         name="name"
-                        value={product.name}
+                        value={product.productChi}
                         onChange={handleChange}
                       />
                     </div>
@@ -68,7 +60,7 @@ function EditProductDetail() {
                         className="form-control"
                         id="description"
                         name="description"
-                        value={product.description}
+                        value={product.unit}
                         onChange={handleChange}
                       />
                     </div>
@@ -82,7 +74,7 @@ function EditProductDetail() {
                         className="form-control"
                         id="cost"
                         name="cost"
-                        value={product.cost}
+                        value={product.price}
                         onChange={handleChange}
                       />
                     </div>
@@ -93,7 +85,7 @@ function EditProductDetail() {
                         className="form-control"
                         id="sales_price"
                         name="sales_price"
-                        value={product.sales_price}
+                        value={product.price}
                         onChange={handleChange}
                       />
                     </div>
@@ -107,7 +99,7 @@ function EditProductDetail() {
                         className="form-control"
                         id="item_number"
                         name="item_number"
-                        value={product.item_number}
+                        value={product.productCode}
                         onChange={handleChange}
                       />
                     </div>
@@ -154,9 +146,11 @@ function EditProductDetail() {
 
                   <div className="row g-3 mt-4 mb-4">
                     <div className="col">
-                      <button className="btn btn-outline-dark py-2 w-100">
-                        Back
-                      </button>
+                      <Link to="/manage-inventory">
+                        <button className="btn btn-outline-dark py-2 w-100">
+                          Back
+                        </button>
+                      </Link>
                     </div>
                     <div className="col">
                       <button className="btn btn-dark py-2 w-100">

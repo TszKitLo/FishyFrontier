@@ -1,11 +1,11 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Image from "../nillkin-case-1.jpg";
 import SideBar from "../components/SideBar";
 import ScrollToTopOnMount from "../template/ScrollToTopOnMount";
 
 function EditProductDetail() {
-  const [product, setProduct] = useState({
-  });
+  const [product, setProduct] = useState({});
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -15,8 +15,6 @@ function EditProductDetail() {
       [name]: value,
     }));
   };
-
-  console.log(product);
 
   return (
     <div className="container mt-5 py-4 px-xl-1">
@@ -136,9 +134,11 @@ function EditProductDetail() {
 
                   <div className="row g-3 mt-4 mb-4">
                     <div className="col">
-                      <button className="btn btn-outline-dark py-2 w-100">
-                        Back
-                      </button>
+                      <Link to="/manage-inventory">
+                        <button className="btn btn-outline-dark py-2 w-100">
+                          Back
+                        </button>
+                      </Link>
                     </div>
                     <div className="col">
                       <button className="btn btn-dark py-2 w-100">
@@ -156,7 +156,7 @@ function EditProductDetail() {
                 alt="Product Image"
                 src={Image}
               />
-              <button className="btn btn-primary mt-3">Upload Image</button>
+                <button className="btn btn-primary mt-3">Upload Image</button>
             </div>
           </div>
         </div>

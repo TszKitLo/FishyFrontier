@@ -1,14 +1,22 @@
 // need to add serach button functionality and add new product page
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SideBar from "../components/SideBar";
+import { ManageProduct } from "../service/manage-product-service";
 
 export default function ManageInventory() {
-  // const [search, setSearch] = useState([]);
-  const [search, setSearch] = useState([
-    { itemNumber: "1", description: "Product A", stock: 10, price: 20, tax: 5 },
-    { itemNumber: "2", description: "Product B", stock: 15, price: 30, tax: 6 },
-  ]);
+  const [search, setSearch] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const resp = await ManageProduct();
+        setSearch(resp.productInventoryDetailList);
+      } catch (error) {
+      }
+    }
+    fetchData();
+  },[]);
 
   return (
     <div className="container mt-5 py-4 px-xl-5">
@@ -64,21 +72,23 @@ export default function ManageInventory() {
                     <tbody>
                       {search.length > 0 ? (
                         search.map((result) => (
-                          <tr key={result.itemNumber}>
+                          <tr key={result.id}>
                             <td>
                               <Link
                                 to={{
-                                  pathname: `/manage-inventory/${result.itemNumber}`,
+                                  pathname: `/manage-inventory/${result.productCode}`,
                                   state: { product: result },
                                 }}
                               >
-                                {result.itemNumber}
+                                {result.productCode}
                               </Link>
                             </td>
-                            <td>{result.description}</td>
+                            <td>{result.brandChi}</td>
+                            <td>{result.productEng}/{result.productChi}</td>
                             <td>{result.stock}</td>
                             <td>${result.price}</td>
                             <td>{result.tax}</td>
+                            <td>{result.expiryDate}</td>
                           </tr>
                         ))
                       ) : (
