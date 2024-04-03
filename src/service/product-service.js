@@ -17,7 +17,6 @@ export const ListProduct = async (
       return new Error(`HTTP error! status: ${response.status}`);
     }
     const text = await response.text();
-    console.log(`api return: ${text}`)
     try {
       const data = JSON.parse(text);
       return data;

@@ -6,17 +6,36 @@ import { ListProduct } from "../service/product-service";
 
 export default function ViewInventory() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [productList, setProductList] = useState([])
 
   useEffect(() => {
     async function fetchData() {
       try {
         const resp = await ListProduct();
-        console.log(resp)
+        setProductList(resp.productList);
       } catch (error) {
+        console.log(error);
       }
     }
     fetchData();
-  });
+  }, []);
+
+  function ProductList() {
+    console.log(productList)
+    return (
+      <div>
+        {productList.map(product => (
+          <FeatureProduct
+            key={product.id}
+            id={product.id}
+            brand={product.productBrand.descriptionEng}
+            name={product.descriptionEng}
+            iamgeLink={product.imageLink}
+          />
+        ))}
+      </div>
+    );
+  }
 
   const handleSearch = () => {
     // todo: call api
@@ -91,9 +110,7 @@ export default function ViewInventory() {
             <br />
 
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-              {Array.from({ length: 9 }, (_, i) => {
-                return <FeatureProduct />;
-              })}
+              <ProductList />
             </div>
           </div>
         </div>
