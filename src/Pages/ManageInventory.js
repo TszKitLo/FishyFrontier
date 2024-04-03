@@ -6,6 +6,7 @@ import { ManageProduct } from "../service/manage-product-service";
 
 export default function ManageInventory() {
   const [search, setSearch] = useState([]);
+  const [searchInput, setSearchInput] = useState("")
 
   useEffect(() => {
     async function fetchData() {
@@ -17,6 +18,20 @@ export default function ManageInventory() {
     }
     fetchData();
   },[]);
+
+  const handleSearchInputChange = (event) => {
+    setSearchInput(event.target.value);
+  };
+
+  const filterProducts = (products, searchTerm) => {
+    return products.filter(
+      (product) =>
+        product.productEng.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  };
+
+  const filteredProducts = filterProducts(search, searchInput);
+
 
   return (
     <div className="container mt-5 py-4 px-xl-5">
@@ -36,6 +51,7 @@ export default function ManageInventory() {
                   placeholder="Enter product name: "
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
+                  onChange={handleSearchInputChange}
                 />
                 <div className="input-group-append">
                   <button className="btn btn-outline-dark" type="button">
@@ -70,8 +86,8 @@ export default function ManageInventory() {
                       </tr>
                     </thead>
                     <tbody>
-                      {search.length > 0 ? (
-                        search.map((result) => (
+                      {filteredProducts.length > 0 ? (
+                        filteredProducts.map((result) => (
                           <tr key={result.id}>
                             <td>
                               <Link
