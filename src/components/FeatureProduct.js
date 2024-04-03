@@ -8,6 +8,7 @@ function FeatureProduct({
   brand = "ABC",
   name = "Sample",
   size = "18 pack",
+  options = ["18 pack", "24 pack"],
   price = 100,
   stock = 100,
   image = Image,
@@ -18,6 +19,7 @@ function FeatureProduct({
   const { order, addProduct } = useOrder();
   const imageLink = `${process.env.REACT_APP_API_URL}${image}`
   console.log('iamge link: ', imageLink);
+
   function ModalBody() {
     return (
       <div style={{ textAlign: "center" }}>
@@ -36,6 +38,15 @@ function FeatureProduct({
           {" "}
           {price} CAD {stock} in Stock{" "}
         </p>
+
+        <div>
+        {options.map((option, index) => (
+          <Button key={index} variant="secondary" className="mr-2 mb-2">
+            {option}
+          </Button>
+        ))}
+      </div>
+
         <input
           type="number"
           placeholder="Quantity"
