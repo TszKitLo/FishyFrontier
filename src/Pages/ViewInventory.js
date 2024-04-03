@@ -23,7 +23,7 @@ export default function ViewInventory() {
   function ProductList() {
     console.log(productList)
     return (
-      <div>
+      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {productList.map(product => (
           <FeatureProduct
             key={product.id}
@@ -43,7 +43,7 @@ export default function ViewInventory() {
 
   const FilterBar = () => {
     return (
-      <ButtonToolbar className="justify-content-between">
+      <ButtonToolbar className="justify-content-between" paddingY="8px">
         <div>
           {" "}
           <Button
@@ -103,15 +103,12 @@ export default function ViewInventory() {
           </div>
         </div>
         <div className="col-lg-9">
-          <div className="d-flex flex-column h-100">
+          < div className="d-flex flex-column h-100">
             <h1 className="center">View Inventory</h1>
 
             <FilterBar></FilterBar>
             <br />
-
-            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-              <ProductList />
-            </div>
+            <ProductList />
           </div>
         </div>
       </div>
