@@ -58,17 +58,19 @@ export const Order = ({ orderId, customerName, orderDate, orderDetails }) => {
             </tr>
           </thead>
           <tbody>
-            {orderDetails.map((orderDetail) => {
+            {orderDetails.map((o) => {
+
               return (
                 <tr>
-                  <td>{orderDetail.id}</td>
-                  <td>{orderDetail.productID}</td>
+                  <td>{o.salesOrderDetail.id}</td>
+                  <td>{o.salesOrderDetail.productID}</td>
                   <td>
-                    {orderDetail.productBrand || ""}{" "}
-                    {orderDetail.productName || ""}
+                    {o.productBrandEng || ""}{" "}
+                    {o.productPackageDescriptionEng
+                      || ""}
                   </td>
-                  <td>{orderDetail.unit}</td>
-                  <td>{orderDetail.quantity}</td>
+                  <td>{o.salesOrderDetail.unit}</td>
+                  <td>{o.salesOrderDetail.qty}</td>
                 </tr>
               );
             })}
