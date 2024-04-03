@@ -1,11 +1,5 @@
-export const ListProduct = async (pageNo = 0, size = 9, productName = "") => {
-  let apiUrl = `${process.env.REACT_APP_API_URL}/product/list?page=${pageNo}&size=${size}`;
-  if (productName !== "") {
-    apiUrl += `&name=${encodeURIComponent(productName)}`;
-  }
-
-  console.log("apiUrl", apiUrl);
-
+export const ListOrder = async () => {
+  const apiUrl = `${process.env.REACT_APP_API_URL}/list/order`;
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) {

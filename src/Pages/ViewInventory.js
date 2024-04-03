@@ -6,13 +6,15 @@ import { ListProduct } from "../service/product-service";
 
 export default function ViewInventory() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [productList, setProductList] = useState([])
+  const [productList, setProductList] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
         const resp = await ListProduct();
-        setProductList(resp.productList);
+        if (resp.productList.length !== 0) {
+          setProductList(resp.productList);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -21,20 +23,24 @@ export default function ViewInventory() {
   }, []);
 
   function ProductList() {
-    console.log(productList)
-    return (
-      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        {productList.map(product => (
-          <FeatureProduct
-            key={product.id}
-            id={product.id}
-            brand={product.productBrand.descriptionEng}
-            name={product.descriptionEng}
-            iamgeLink={product.imageLink}
-          />
-        ))}
-      </div>
-    );
+    console.log(productList);
+    if (productList.length === 0) {
+      return <></>;
+    } else {
+      return (
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          {productList.map((product) => (
+            <FeatureProduct
+              key={product.id}
+              id={product.id}
+              brand={product.productBrand.descriptionEng}
+              name={product.descriptionEng}
+              iamgeLink={product.imageLink}
+            />
+          ))}
+        </div>
+      );
+    }
   }
 
   const handleSearch = () => {
@@ -103,7 +109,7 @@ export default function ViewInventory() {
           </div>
         </div>
         <div className="col-lg-9">
-          < div className="d-flex flex-column h-100">
+          <div className="d-flex flex-column h-100">
             <h1 className="center">View Inventory</h1>
 
             <FilterBar></FilterBar>

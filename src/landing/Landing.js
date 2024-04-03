@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
 
-
 function Landing() {
   // return (
   //   <>
@@ -66,7 +65,6 @@ function Landing() {
       [name]: value,
     }));
   };
-
 
   if (loggedIn) {
     return <Redirect to="/view-inventory" />;

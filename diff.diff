@@ -1,0 +1,777 @@
+diff --git a/src/App.js b/src/App.js
+index 77918b28..c8fdebfd 100644
+--- a/src/App.js
++++ b/src/App.js
+@@ -13,42 +13,42 @@ import { OrderProvider } from "./salesContext";
+ 
+ function App() {
+   return (
+-  <OrderProvider>
+-    <Template>
+-      <Switch>
+-        {/* <Route path="/products" exact>
++    <OrderProvider>
++      <Template>
++        <Switch>
++          {/* <Route path="/products" exact>
+           <ProductList />
+         </Route> */}
+-        <Route path="/products/:slug">
+-          <ProductDetail />
+-        </Route>
+-        <Route path="/" exact>
+-          <Landing />
+-        </Route>
+-        <Route path="/manage-inventory/:itemNumber">
+-          <EditProductDetail />
+-        </Route>
+-        <Route path="/manage-inventory">
+-          <ManageInventory />
+-        </Route>
+-        <Route path="/add-product">
+-          <AddNewProduct />
+-        </Route>
+-        <Route path="/order">
+-          <Order />
+-        </Route>
+-        <Route path="/picking-list">
+-          <PickingList />
+-        </Route>
+-        <Route path="/setting">
+-          <Setting />
+-        </Route>
+-        <Route path="/view-inventory">
+-          <ViewInventory />
+-        </Route>
+-      </Switch>
+-    </Template>
+-  </OrderProvider>
++          <Route path="/products/:slug">
++            <ProductDetail />
++          </Route>
++          <Route path="/" exact>
++            <Landing />
++          </Route>
++          <Route path="/manage-inventory/:itemNumber">
++            <EditProductDetail />
++          </Route>
++          <Route path="/manage-inventory">
++            <ManageInventory />
++          </Route>
++          <Route path="/add-product">
++            <AddNewProduct />
++          </Route>
++          <Route path="/order">
++            <Order />
++          </Route>
++          <Route path="/picking-list">
++            <PickingList />
++          </Route>
++          <Route path="/setting">
++            <Setting />
++          </Route>
++          <Route path="/view-inventory">
++            <ViewInventory />
++          </Route>
++        </Switch>
++      </Template>
++    </OrderProvider>
+   );
+ }
+ 
+diff --git a/src/Pages/AddNewProduct.js b/src/Pages/AddNewProduct.js
+index e4dcedf2..6def6a39 100644
+--- a/src/Pages/AddNewProduct.js
++++ b/src/Pages/AddNewProduct.js
+@@ -4,8 +4,7 @@ import SideBar from "../components/SideBar";
+ import ScrollToTopOnMount from "../template/ScrollToTopOnMount";
+ 
+ function EditProductDetail() {
+-  const [product, setProduct] = useState({
+-  });
++  const [product, setProduct] = useState({});
+ 
+   const handleChange = (e) => {
+     e.preventDefault();
+@@ -141,9 +140,7 @@ function EditProductDetail() {
+                       </button>
+                     </div>
+                     <div className="col">
+-                      <button className="btn btn-dark py-2 w-100">
+-                        Save
+-                      </button>
++                      <button className="btn btn-dark py-2 w-100">Save</button>
+                     </div>
+                   </div>
+                 </form>
+diff --git a/src/Pages/Order.js b/src/Pages/Order.js
+index 75555871..970e332a 100644
+--- a/src/Pages/Order.js
++++ b/src/Pages/Order.js
+@@ -2,7 +2,6 @@ import SideBar from "../components/SideBar";
+ import { useEffect, useState } from "react";
+ 
+ export default function Order() {
+-  
+   // use order from useOrder later
+ 
+   const [search, setSearch] = useState([
+@@ -40,10 +39,9 @@ export default function Order() {
+   };
+ 
+   useEffect(() => {
+-    const currentDate = new Date().toISOString().split('T')[0];
+-    setOrder({"order_create": currentDate, "details" : search});
+-  },[])
+-
++    const currentDate = new Date().toISOString().split("T")[0];
++    setOrder({ order_create: currentDate, details: search });
++  }, []);
+ 
+   return (
+     <div className="container mt-5 py-4 px-xl-5">
+@@ -60,118 +58,133 @@ export default function Order() {
+               <h2 className="mb-4">Sales Order</h2>
+             </div>
+           </div>
+-          
++
+           <div className="row">
+             <div className="col-lg-7 ms-4">
+               <form>
+-              <div className="row mb-3">
+-                <div className="col-auto"> 
+-                  <label htmlFor="name" className="col-form-label">Client name: </label>
+-                </div>
+-                <div className="col"> 
+-                  <input
+-                  type="text"
+-                  className="form-control"
+-                  id="name"
+-                  name="name"
+-                  onChange={handleChange}
+-                  />
++                <div className="row mb-3">
++                  <div className="col-auto">
++                    <label htmlFor="name" className="col-form-label">
++                      Client name:{" "}
++                    </label>
++                  </div>
++                  <div className="col">
++                    <input
++                      type="text"
++                      className="form-control"
++                      id="name"
++                      name="name"
++                      onChange={handleChange}
++                    />
++                  </div>
+                 </div>
+-              </div>
+ 
+-              <div className="row mb-3">
+-                  <div className="col-auto"> 
+-                    <label htmlFor="order_create" className="col-form-label">Order Date: </label>
++                <div className="row mb-3">
++                  <div className="col-auto">
++                    <label htmlFor="order_create" className="col-form-label">
++                      Order Date:{" "}
++                    </label>
++                  </div>
++                  <div className="col">
++                    <input
++                      type="date"
++                      className="form-control"
++                      id="order_create"
++                      name="order_create"
++                      onChange={handleChange}
++                      defaultValue={order.order_create}
++                    />
+                   </div>
+-                <div className="col"> 
+-                  <input
+-                    type="date"
+-                    className="form-control"
+-                    id="order_create"
+-                    name="order_create"
+-                    onChange={handleChange}
+-                    defaultValue={order.order_create}
+-                  />
+                 </div>
+-              </div>
+ 
+-              <div className="row mb-3">
+-                  <div className="col-auto"> 
+-                    <label htmlFor="expected_delivery_date" className="col-form-label">Delivery Date: </label>
++                <div className="row mb-3">
++                  <div className="col-auto">
++                    <label
++                      htmlFor="expected_delivery_date"
++                      className="col-form-label"
++                    >
++                      Delivery Date:{" "}
++                    </label>
++                  </div>
++                  <div className="col">
++                    <input
++                      type="date"
++                      className="form-control"
++                      id="expected_delivery_date"
++                      name="expected_delivery_date"
++                      onChange={handleChange}
++                    />
+                   </div>
+-                <div className="col"> 
+-                  <input
+-                    type="date"
+-                    className="form-control"
+-                    id="expected_delivery_date"
+-                    name="expected_delivery_date"
+-                    onChange={handleChange}
+-                  />
+                 </div>
+-              </div>
+ 
+-              <div className="row mb-3">
+-                  <div className="col-auto"> 
+-                    <label htmlFor="amount" className="col-form-label">Total Amount: </label>
++                <div className="row mb-3">
++                  <div className="col-auto">
++                    <label htmlFor="amount" className="col-form-label">
++                      Total Amount:{" "}
++                    </label>
++                  </div>
++                  <div className="col">
++                    <input
++                      type="number"
++                      className="form-control"
++                      id="amount"
++                      name="amount"
++                      onChange={handleChange}
++                    />
+                   </div>
+-                <div className="col"> 
+-                  <input
+-                    type="number"
+-                    className="form-control"
+-                    id="amount"
+-                    name="amount"
+-                    onChange={handleChange}
+-                  />
+                 </div>
+-              </div>
+ 
+-            <div className="row mb-3">
+-                <div className="col-auto"> 
+-                  <label htmlFor="unit" className="col-form-label">Total Unit: </label>
++                <div className="row mb-3">
++                  <div className="col-auto">
++                    <label htmlFor="unit" className="col-form-label">
++                      Total Unit:{" "}
++                    </label>
++                  </div>
++                  <div className="col">
++                    <input
++                      type="number"
++                      className="form-control"
++                      id="unit"
++                      name="unit"
++                      onChange={handleChange}
++                    />
++                  </div>
+                 </div>
+-              <div className="col"> 
+-                <input
+-                  type="number"
+-                  className="form-control"
+-                  id="unit"
+-                  name="unit"
+-                  onChange={handleChange}
+-                />
+-              </div>
++              </form>
+             </div>
+-            </form>
+-          </div>
+ 
+-          <div className="col-lg-10 mt-4">
+-            <div className="table-responsive">
+-              <table className="table">
+-                <thead className="table-dark">
+-                  <tr>
+-                    <th scope="col">Item Number</th>
+-                    <th scope="col">Brand/Product Name</th>
+-                    <th scope="col">Unit</th>
+-                    <th scope="col">Price</th>
+-                    <th scope="col">Tax</th>
+-                  </tr>
+-                </thead>
+-                <tbody>
+-                  {search.map((result) => (
+-                    <tr key={result.product_id}>
+-                      <td>{result.product_id}</td>
+-                      <td>{result.unit}</td>
+-                      <td>{result.qty}</td>
+-                      <td>${result.price}</td>
+-                      <td>{result.tax_amount}</td>
++            <div className="col-lg-10 mt-4">
++              <div className="table-responsive">
++                <table className="table">
++                  <thead className="table-dark">
++                    <tr>
++                      <th scope="col">Item Number</th>
++                      <th scope="col">Brand/Product Name</th>
++                      <th scope="col">Unit</th>
++                      <th scope="col">Price</th>
++                      <th scope="col">Tax</th>
+                     </tr>
+-                  ))}
+-                </tbody>
+-              </table>
+-            </div>
++                  </thead>
++                  <tbody>
++                    {search.map((result) => (
++                      <tr key={result.product_id}>
++                        <td>{result.product_id}</td>
++                        <td>{result.unit}</td>
++                        <td>{result.qty}</td>
++                        <td>${result.price}</td>
++                        <td>{result.tax_amount}</td>
++                      </tr>
++                    ))}
++                  </tbody>
++                </table>
++              </div>
+ 
+-            <div className="col-lg-9 d-flex justify-content-end align-items-center mt-4">
+-              <button className="btn btn-outline-dark py-2 me-5">Back</button>
+-              <button className="btn btn-dark ms-5" onClick={handleSubmit}>Confirm</button>
+-            </div>
++              <div className="col-lg-9 d-flex justify-content-end align-items-center mt-4">
++                <button className="btn btn-outline-dark py-2 me-5">Back</button>
++                <button className="btn btn-dark ms-5" onClick={handleSubmit}>
++                  Confirm
++                </button>
++              </div>
+             </div>
+           </div>
+         </div>
+diff --git a/src/Pages/PickingList.js b/src/Pages/PickingList.js
+index 8f42561e..16341513 100644
+--- a/src/Pages/PickingList.js
++++ b/src/Pages/PickingList.js
+@@ -1,6 +1,120 @@
+ import SideBar from "../components/SideBar";
++import { Order } from "../components/Order";
+ 
+ export default function PickingList() {
++  const sampleOrderList = [
++    {
++      salesOrderHeader: {
++        id: 1,
++        deleted: false,
++        customer: "user_1",
++        shippingAddress: null,
++        orderDate: "2024-03-31T00:00:00Z",
++        expectedDeliveryDate: "2024-04-01T00:00:00Z",
++        orderNo: "O1711878383",
++        referenceNo: "RO1711878383",
++        taxAmount: 0.0,
++        createdUser: null,
++        createdDate: "2024-03-31T13:46:23.617Z",
++        lastUpdatedUser: null,
++        lastUpldatedDate: null,
++        deleteUser: null,
++        deleteDate: null,
++      },
++      salesOrderDetails: [
++        {
++          id: 1,
++          deleted: false,
++          salesOrderID: 1,
++          productID: 6,
++          qty: 2,
++          unit: "bag",
++          price: 2.2,
++          taxAmount: 0.12,
++          referenceNo: "RO1711878383",
++          createdUser: null,
++          createdDate: "2024-03-31T13:46:23.803Z",
++          lastUpdatedUser: null,
++          lastUpldatedDate: null,
++          deleteUser: null,
++          deleteDate: null,
++        },
++        {
++          id: 2,
++          deleted: false,
++          salesOrderID: 1,
++          productID: 3,
++          qty: 4,
++          unit: "bag",
++          price: 2.2,
++          taxAmount: 0.12,
++          referenceNo: "RO1711878383",
++          createdUser: null,
++          createdDate: "2024-03-31T13:46:23.850Z",
++          lastUpdatedUser: null,
++          lastUpldatedDate: null,
++          deleteUser: null,
++          deleteDate: null,
++        },
++      ],
++    },
++    {
++      salesOrderHeader: {
++        id: 2,
++        deleted: false,
++        customer: "user_1",
++        shippingAddress: null,
++        orderDate: "2024-04-03T00:00:00Z",
++        expectedDeliveryDate: "2024-04-02T00:00:00Z",
++        orderNo: "O1712094772",
++        referenceNo: "RO1712094772",
++        taxAmount: 0.0,
++        createdUser: null,
++        createdDate: "2024-04-03T01:52:52.307Z",
++        lastUpdatedUser: null,
++        lastUpldatedDate: null,
++        deleteUser: null,
++        deleteDate: null,
++      },
++      salesOrderDetails: [
++        {
++          id: 3,
++          deleted: false,
++          salesOrderID: 2,
++          productID: 6,
++          qty: 2,
++          unit: "bag",
++          price: 2.2,
++          taxAmount: 0.12,
++          referenceNo: "RO1712094772",
++          createdUser: null,
++          createdDate: "2024-04-03T01:52:52.547Z",
++          lastUpdatedUser: null,
++          lastUpldatedDate: null,
++          deleteUser: null,
++          deleteDate: null,
++        },
++        {
++          id: 4,
++          deleted: false,
++          salesOrderID: 2,
++          productID: 3,
++          qty: 4,
++          unit: "bag",
++          price: 2.2,
++          taxAmount: 0.12,
++          referenceNo: "RO1712094772",
++          createdUser: null,
++          createdDate: "2024-04-03T01:52:52.590Z",
++          lastUpdatedUser: null,
++          lastUpldatedDate: null,
++          deleteUser: null,
++          deleteDate: null,
++        },
++      ],
++    },
++  ];
++
+   return (
+     <div className="container mt-5 py-4 px-xl-5">
+       <div className="row mb-4 mt-lg-3">
+@@ -12,6 +126,17 @@ export default function PickingList() {
+         <div className="col-lg-9">
+           <div className="d-flex flex-column h-100">
+             <div className="row mb-3">Picking List</div>
++            {sampleOrderList.map((order) => {
++              return (
++                <Order
++                  key={order.salesOrderHeader.id}
++                  orderId={order.salesOrderHeader.id}
++                  customerName={order.salesOrderHeader.customer}
++                  orderDate={order.salesOrderHeader.orderDate}
++                  orderDetails={order.salesOrderDetails}
++                />
++              );
++            })}
+           </div>
+         </div>
+       </div>
+diff --git a/src/Pages/ViewInventory.js b/src/Pages/ViewInventory.js
+index edaffd7c..195a07e8 100644
+--- a/src/Pages/ViewInventory.js
++++ b/src/Pages/ViewInventory.js
+@@ -6,13 +6,15 @@ import { ListProduct } from "../service/product-service";
+ 
+ export default function ViewInventory() {
+   const [searchTerm, setSearchTerm] = useState("");
+-  const [productList, setProductList] = useState([])
++  const [productList, setProductList] = useState([]);
+ 
+   useEffect(() => {
+     async function fetchData() {
+       try {
+         const resp = await ListProduct();
+-        setProductList(resp.productList);
++        if (resp.productList.length !== 0) {
++          setProductList(resp.productList);
++        }
+       } catch (error) {
+         console.log(error);
+       }
+@@ -21,20 +23,24 @@ export default function ViewInventory() {
+   }, []);
+ 
+   function ProductList() {
+-    console.log(productList)
+-    return (
+-      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+-        {productList.map(product => (
+-          <FeatureProduct
+-            key={product.id}
+-            id={product.id}
+-            brand={product.productBrand.descriptionEng}
+-            name={product.descriptionEng}
+-            iamgeLink={product.imageLink}
+-          />
+-        ))}
+-      </div>
+-    );
++    console.log(productList);
++    if (productList.length === 0) {
++      return <></>;
++    } else {
++      return (
++        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
++          {productList.map((product) => (
++            <FeatureProduct
++              key={product.id}
++              id={product.id}
++              brand={product.productBrand.descriptionEng}
++              name={product.descriptionEng}
++              iamgeLink={product.imageLink}
++            />
++          ))}
++        </div>
++      );
++    }
+   }
+ 
+   const handleSearch = () => {
+@@ -103,7 +109,7 @@ export default function ViewInventory() {
+           </div>
+         </div>
+         <div className="col-lg-9">
+-          < div className="d-flex flex-column h-100">
++          <div className="d-flex flex-column h-100">
+             <h1 className="center">View Inventory</h1>
+ 
+             <FilterBar></FilterBar>
+diff --git a/src/components/FeatureProduct.js b/src/components/FeatureProduct.js
+index 299c33cb..ff8b5077 100644
+--- a/src/components/FeatureProduct.js
++++ b/src/components/FeatureProduct.js
+@@ -14,8 +14,8 @@ function FeatureProduct({
+ }) {
+   const link = "#/products/" + id;
+   const [show, setShow] = useState(false);
+-  const [quantity, setQuantity] = useState(0)
+-  const { order, addProduct } = useOrder()
++  const [quantity, setQuantity] = useState(0);
++  const { order, addProduct } = useOrder();
+   function ModalBody() {
+     return (
+       <div style={{ textAlign: "center" }}>
+@@ -34,7 +34,12 @@ function FeatureProduct({
+           {" "}
+           {price} CAD {stock} in Stock{" "}
+         </p>
+-        <input type="number" placeholder="Quantity" min={0} onChange={(e) => setQuantity(e)} />
++        <input
++          type="number"
++          placeholder="Quantity"
++          min={0}
++          onChange={(e) => setQuantity(e)}
++        />
+       </div>
+     );
+   }
+@@ -42,10 +47,15 @@ function FeatureProduct({
+   const handleOrder = () => {
+     setShow(false);
+     addProduct({
+-      id, brand, name, size, price, quantity
+-    })
++      id,
++      brand,
++      name,
++      size,
++      price,
++      quantity,
++    });
+ 
+-    console.log(`Order: ${order}`)
++    console.log(`Order: ${order}`);
+     // todo: save to context
+   };
+ 
+diff --git a/src/components/OrderList.js b/src/components/OrderList.js
+deleted file mode 100644
+index a2dd8c08..00000000
+--- a/src/components/OrderList.js
++++ /dev/null
+@@ -1,47 +0,0 @@
+-import { Card, Table, DropdownButton, Dropdown } from 'react-bootstrap'
+-
+-export const OrderForm = ({
+-    orderId,
+-    customerName,
+-    orderDate,
+-    productArray
+-}) => {
+-
+-    const StatusDropdown = () => {
+-        return (<DropdownButton id="dropdown-basic-button" title="Status">
+-            <Dropdown.Item >Pending</Dropdown.Item>
+-            <Dropdown.Item >Something Done</Dropdown.Item>
+-        </DropdownButton>)
+-    }
+-    return (<><Card backgroundColor="white">
+-        <p>Order # {orderId}</p>
+-        <p>Customer name: {customerName}</p>
+-        <p>Order date: {orderDate}</p>
+-        <p>Status: </p><StatusDropdown />
+-
+-        <Table>
+-            <thead>
+-                <tr>
+-                    <th>#</th>
+-                    <th>Product Description</th>
+-                    <th>Unit</th>
+-                    <th>Quantities</th>
+-                </tr>
+-            </thead>
+-            <tbody>
+-                {productArray.map((product) => {
+-                    return (<><td>{product.id}</td>
+-                        <td>{product.brand} {product.name}</td>
+-                        <td>{product.unit}</td>
+-                        <td>{product.quantity}</td></>)
+-
+-
+-
+-                })}
+-            </tbody>
+-
+-        </Table>
+-
+-    </Card ></>)
+-
+-}
+\ No newline at end of file
+diff --git a/src/components/SideBar.js b/src/components/SideBar.js
+index c9c6c9b7..5a660ea7 100644
+--- a/src/components/SideBar.js
++++ b/src/components/SideBar.js
+@@ -2,8 +2,7 @@ import { Link } from "react-router-dom";
+ import { useOrder } from "../salesContext";
+ 
+ function SideBar() {
+-
+-  const {order} = useOrder();
++  const { order } = useOrder();
+ 
+   return (
+     <ul className="list-group list-group-flush rounded">
+@@ -28,7 +27,7 @@ function SideBar() {
+             to="/order"
+             className="btn btn-sm btn-outline-dark rounded-pill me-2 mb-4"
+           >
+-            Order {order.length === 0 ? ("") : (`(${order.length})`)}
++            Order {order.length === 0 ? "" : `(${order.length})`}
+           </Link>
+           <Link
+             to="/picking-list"
+diff --git a/src/landing/Landing.js b/src/landing/Landing.js
+index 076a2e82..65f69d10 100644
+--- a/src/landing/Landing.js
++++ b/src/landing/Landing.js
+@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+ import { useState } from "react";
+ import { Redirect } from "react-router-dom";
+ 
+-
+ function Landing() {
+   // return (
+   //   <>
+@@ -67,7 +66,6 @@ function Landing() {
+     }));
+   };
+ 
+-
+   if (loggedIn) {
+     return <Redirect to="/view-inventory" />;
+   }
+diff --git a/src/service/product-service.js b/src/service/product-service.js
+index e482fc1c..13265cbc 100644
+--- a/src/service/product-service.js
++++ b/src/service/product-service.js
+@@ -1,8 +1,4 @@
+-export const ListProduct = async (
+-  pageNo = 0,
+-  size = 9,
+-  productName = "",
+-) => {
++export const ListProduct = async (pageNo = 0, size = 9, productName = "") => {
+   let apiUrl = `${process.env.REACT_APP_API_URL}/product/list?page=${pageNo}&size=${size}`;
+   if (productName !== "") {
+     apiUrl += `&name=${encodeURIComponent(productName)}`;
+diff --git a/src/template/Header.js b/src/template/Header.js
+index d7f5d1e9..2dd612f1 100644
+--- a/src/template/Header.js
++++ b/src/template/Header.js
+@@ -4,8 +4,7 @@ import { useState } from "react";
+ import { useOrder } from "../salesContext";
+ 
+ function Header() {
+-
+-  const {order} = useOrder();
++  const { order } = useOrder();
+ 
+   const [openedDrawer, setOpenedDrawer] = useState(false);
+ 
+@@ -54,11 +53,13 @@ function Header() {
+               <button
+                 type="button"
+                 className="btn btn-outline-dark me-3 d-none d-lg-inline"
+-                >
++              >
+                 <FontAwesomeIcon icon={["fas", "shopping-cart"]} />
+-                <span className="ms-3 badge rounded-pill bg-dark">{order.length}</span>
++                <span className="ms-3 badge rounded-pill bg-dark">
++                  {order.length}
++                </span>
+               </button>
+-              </Link>
++            </Link>
+             <ul className="navbar-nav mb-2 mb-lg-0">
+               <li className="nav-item dropdown">
+                 <a
+@@ -92,10 +93,10 @@ function Header() {
+           </div>
+ 
+           <div className="d-inline-block d-lg-none">
+-              <button type="button" className="btn btn-outline-dark">
+-                <FontAwesomeIcon icon={["fas", "shopping-cart"]} />
+-                <span className="ms-3 badge rounded-pill bg-dark">0</span>
+-              </button>
++            <button type="button" className="btn btn-outline-dark">
++              <FontAwesomeIcon icon={["fas", "shopping-cart"]} />
++              <span className="ms-3 badge rounded-pill bg-dark">0</span>
++            </button>
+             <button
+               className="navbar-toggler p-0 border-0 ms-3"
+               type="button"

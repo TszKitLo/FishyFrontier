@@ -14,8 +14,8 @@ function FeatureProduct({
 }) {
   const link = "#/products/" + id;
   const [show, setShow] = useState(false);
-  const [quantity, setQuantity] = useState(0)
-  const { order, addProduct } = useOrder()
+  const [quantity, setQuantity] = useState(0);
+  const { order, addProduct } = useOrder();
   function ModalBody() {
     return (
       <div style={{ textAlign: "center" }}>
@@ -34,7 +34,12 @@ function FeatureProduct({
           {" "}
           {price} CAD {stock} in Stock{" "}
         </p>
-        <input type="number" placeholder="Quantity" min={0} onChange={(e) => setQuantity(e)} />
+        <input
+          type="number"
+          placeholder="Quantity"
+          min={0}
+          onChange={(e) => setQuantity(e)}
+        />
       </div>
     );
   }
@@ -42,10 +47,15 @@ function FeatureProduct({
   const handleOrder = () => {
     setShow(false);
     addProduct({
-      id, brand, name, size, price, quantity
-    })
+      id,
+      brand,
+      name,
+      size,
+      price,
+      quantity,
+    });
 
-    console.log(`Order: ${order}`)
+    console.log(`Order: ${order}`);
     // todo: save to context
   };
 
