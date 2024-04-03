@@ -1,5 +1,6 @@
 import SideBar from "../components/SideBar";
 import { useEffect, useState } from "react";
+import { CreateProduct } from "../service/create-order";
 
 export default function Order() {
   
@@ -21,22 +22,23 @@ export default function Order() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(order);
-    // try {
-    //   const res = await fetch('/api/auth/signin', {
-    //     method : 'POST',
-    //     headers : {
-    //       'Content-Type' : 'application/json',
-    //     },
-    //     body : JSON.stringify(order),
-    //   });
+    try {
+      const res = await CreateProduct(order)
+      // const res = await fetch('/api/auth/signin', {
+      //   method : 'POST',
+      //   headers : {
+      //     'Content-Type' : 'application/json',
+      //   },
+      //   body : JSON.stringify(order),
+      // });
 
-    //   navigate('/');
-    // } catch (error) {
-    //   console.log(error);;
-    // }
+      // navigate('/');
+    } catch (error) {
+      console.log(error);;
+    }
   };
 
   useEffect(() => {
@@ -66,14 +68,14 @@ export default function Order() {
               <form>
               <div className="row mb-3">
                 <div className="col-auto"> 
-                  <label htmlFor="name" className="col-form-label">Client name: </label>
+                  <label htmlFor="clientName" className="col-form-label">Client name: </label>
                 </div>
                 <div className="col"> 
                   <input
                   type="text"
                   className="form-control"
-                  id="name"
-                  name="name"
+                  id="clientName"
+                  name="clientName"
                   onChange={handleChange}
                   />
                 </div>
