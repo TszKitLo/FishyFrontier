@@ -23,7 +23,8 @@ export default function Order() {
     }));
   };
 
-  console.log(createOrder);
+  console.log(tempOrder);
+  // console.log(createOrder);
   const handleSubmit = async (e) => {
     e.preventDefault();
     // console.log(createOrder);
@@ -169,7 +170,7 @@ export default function Order() {
                       <tr key={result.productCode}>
                         <td>{result.productCode}</td>
                         <td>{result.name}</td>
-                        <td>{result.size}</td>
+                        <td>{result.unit}</td>
                         <td>${result.price}</td>
                         <td>${result.taxAmount}</td>
                       </tr>
