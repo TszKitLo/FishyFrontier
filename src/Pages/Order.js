@@ -8,10 +8,11 @@ import { useOrder } from "../salesContext";
 export default function Order() {
 
   const { order } = useOrder();
-
   const [tempOrder, setTempOrder] = useState([]);
-  
   const [createOrder, setCreateOrder] = useState({});
+  const [totalAmount, setTotalAmount] = useState(0); 
+
+  console.log(totalAmount);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -22,7 +23,7 @@ export default function Order() {
     }));
   };
 
-  // console.log(createOrder);
+  console.log(createOrder);
   const handleSubmit = async (e) => {
     e.preventDefault();
     // console.log(createOrder);
@@ -43,12 +44,20 @@ export default function Order() {
     });
     
     setTempOrder(extractedInfoArray);
-  }, []);
+  }, [order]);
 
   useEffect(() => {
     const currentDate = new Date().toISOString().split("T")[0];
     setCreateOrder({ orderCreateDate: currentDate, details: tempOrder });
-  }, []);
+  }, [tempOrder]);
+
+  useEffect(() => {
+    const total = tempOrder.reduce((acc, item) => {
+      return acc + (item.price + item.taxAmount) * item.qty;
+    }, 0);
+    setTotalAmount(total);
+  }, [createOrder]);
+
 
   return (
     <div className="container mt-5 py-4 px-xl-5">
@@ -125,7 +134,7 @@ export default function Order() {
                 <div className="row mb-3">
                   <div className="col-auto">
                     <label htmlFor="amount" className="col-form-label">
-                      Total Amount:{" "}
+                      Total Amount:{" $"}
                     </label>
                   </div>
                   <div className="col">
@@ -134,6 +143,7 @@ export default function Order() {
                       className="form-control"
                       id="amount"
                       name="amount"
+                      value={totalAmount}
                       onChange={handleChange}
                     />
                   </div>
