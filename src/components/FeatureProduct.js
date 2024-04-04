@@ -36,6 +36,7 @@ function FeatureProduct({
   }
 
   const RadioCard = ({ packageName, index, stock, price, unit }) => {
+    console.log(packaging, index)
     return (<Card>
       <Card.Body>
         <Card.Text>
@@ -46,9 +47,9 @@ function FeatureProduct({
             name="radioGroup"
             type="radio"
             id={index}
-            value="option1"
-            checked={packaging === index}
-            onChange={setPackaging(index)}
+            value={index}
+            checked={packaging === index && stock > 0}
+            onChange={() => setPackaging(index)}
             disabled={stock === 0}
           />
 
@@ -121,6 +122,7 @@ function FeatureProduct({
   const handleOnClick = (i) => {
     setSelectedProduct(i)
     fetchProduct(i)
+    setPackaging(0)
   }
 
   return (
