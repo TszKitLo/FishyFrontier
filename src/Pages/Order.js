@@ -13,7 +13,6 @@ export default function Order() {
   const [totalAmount, setTotalAmount] = useState(0);
 
 
-  console.log(createOrder);
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
@@ -24,7 +23,6 @@ export default function Order() {
   };
 
   // console.log(tempOrder);
-  // console.log(createOrder);
   const handleSubmit = async (e) => {
     e.preventDefault();
     // console.log(createOrder);

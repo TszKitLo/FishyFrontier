@@ -78,10 +78,10 @@ export default function ViewInventory() {
           </Button>
         </div>
 
-        <div class="input-group">
+        <div className="input-group">
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             placeholder="Search by name"
             aria-label="Recipient's username"
             aria-describedby="basic-addon2"
@@ -89,9 +89,9 @@ export default function ViewInventory() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <div class="input-group-append">
+          <div className="input-group-append">
             <button
-              class="btn btn-outline-dark"
+              className="btn btn-outline-dark"
               type="submit"
               onClick={handleSearch}
             >
