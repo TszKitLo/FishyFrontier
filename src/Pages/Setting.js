@@ -12,7 +12,7 @@ export default function Setting() {
         </div>
         <div className="col-lg-9">
           <div className="d-flex flex-column h-100">
-            <div className="row mb-3">Setting</div>
+            <div className="row mb-3">Export to Quickbook</div>
           </div>
         </div>
       </div>

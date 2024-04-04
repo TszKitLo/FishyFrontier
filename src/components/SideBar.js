@@ -39,7 +39,7 @@ function SideBar() {
             to="/setting"
             className="btn btn-sm btn-outline-dark rounded-pill me-2 mb-4"
           >
-            Setting
+            Export to Quickbook
           </Link>
           <Link
             to="/"
