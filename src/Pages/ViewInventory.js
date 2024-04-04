@@ -26,12 +26,15 @@ export default function ViewInventory() {
     if (productList.length === 0) {
       return <></>;
     } else {
+      console.log(`productList`, productList);
+
       return (
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
           {productList.map((product) => (
-            <FeatureProduct
+            < FeatureProduct
               key={product.id}
               id={product.id}
+              cbrand={product.productBrand.descriptionChi}
               brand={product.productBrand.descriptionEng}
               name={product.descriptionEng}
               cname={product.descriptionChi}

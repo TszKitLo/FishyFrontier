@@ -18,7 +18,6 @@ export default function PickingList() {
     fetchOrder();
   }, []);
 
-  console.log(orderList);
   return (
     <div className="container mt-5 py-4 px-xl-5">
       <div className="row mb-4 mt-lg-3">

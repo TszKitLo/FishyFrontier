@@ -4,10 +4,11 @@ import { useOrder } from "../salesContext";
 import { GetProductById } from "../service/product-service";
 
 function FeatureProduct({
-  id = "1",
-  brand = "ABC",
-  name = "Sample",
-  cname = "chinese",
+  id,
+  brand,
+  cbrand,
+  name,
+  cname,
   image = null,
 }) {
   const link = "#/products/" + id;
@@ -27,7 +28,6 @@ function FeatureProduct({
       if (resp.productDetailList) {
         // Update the state with the fetched product details.
         setProductDetail(resp.productDetailList);
-        console.log(`productDetail: ${resp.productDetailList}`);
       }
     } catch (error) {
       // Log any errors that occur during the fetch operation.
@@ -36,7 +36,6 @@ function FeatureProduct({
   }
 
   const RadioCard = ({ packageName, index, stock, price, unit }) => {
-    console.log(`packageName: ${packageName}, index: ${index}, stock: ${stock}, price: ${price}, unit: ${unit}`)
     return (<Card>
       <Card.Body>
         <Card.Text>
@@ -66,7 +65,6 @@ function FeatureProduct({
   function ModalBody() {
     if (productDetail.length !== 0) {
       console.log("enter the modal...")
-      console.log(productDetail)
 
       return (
         <div style={{ textAlign: "center" }}>
@@ -106,7 +104,6 @@ function FeatureProduct({
   }
 
   const handleOrder = () => {
-    console.log(`packaging: ${packaging}`)
     const pPrice = productDetail[packaging].price;
     const pPackaging = productDetail[packaging].packagingDescEng;
     setSelectedProduct(null)
@@ -119,7 +116,6 @@ function FeatureProduct({
       quantity,
     });
 
-    console.log(`Order: ${order}`);
   };
 
   const handleOnClick = (i) => {
@@ -139,8 +135,8 @@ function FeatureProduct({
         />
 
         <div className="card-body">
-          <h5 className="card-title text-center">{name / cname}</h5>
-          <p className="card-text text-center text-muted">{brand}</p>
+          <h5 className="card-title text-center">{name} / {cname}</h5>
+          <p className="card-text text-center text-muted">{brand} / {cbrand}</p>
 
           <div className="d-grid gap-2">
 
