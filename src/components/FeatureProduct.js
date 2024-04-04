@@ -7,6 +7,7 @@ function FeatureProduct({
   id = "1",
   brand = "ABC",
   name = "Sample",
+  cname = "chinese",
   size = "18 pack",
   options = ["18 pack", "24 pack"],
   price = 100,
@@ -31,12 +32,12 @@ function FeatureProduct({
         />
         <p>
           {" "}
-          <b>{brand}</b> {name}{" "}
+          <b>{brand}</b> {name}/{cname}{" "}
           <span style={{ textDecoration: "underline" }}>{size}</span>
         </p>
         <p>
           {" "}
-          {price} CAD {stock} in Stock{" "}
+          ${price} CAD {stock} in Stock{" "}
         </p>
 
         <div>
@@ -83,7 +84,7 @@ function FeatureProduct({
           src={imageLink}
         />
         <div className="card-body">
-          <h5 className="card-title text-center">{name}</h5>
+          <h5 className="card-title text-center">{name}/{cname}</h5>
           <p className="card-text text-center text-muted">{price}</p>
           <div className="d-grid gap-2">
             <div
