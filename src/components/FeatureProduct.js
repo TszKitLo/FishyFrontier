@@ -18,8 +18,7 @@ function FeatureProduct({
   const [packaging, setPackaging] = useState(0);
   const { order, addProduct } = useOrder();
   const imageLink = `${process.env.REACT_APP_API_URL}${image}`;
-
-
+  
   // Define the function to fetch product details inside the useEffect hook.
   async function fetchProduct(productId) {
     try {
@@ -65,7 +64,6 @@ function FeatureProduct({
   function ModalBody() {
     if (productDetail.length !== 0) {
       console.log("enter the modal...")
-
       return (
         <div style={{ textAlign: "center" }}>
           <img
@@ -95,7 +93,7 @@ function FeatureProduct({
             type="number"
             placeholder="Quantity"
             min={0}
-            onChange={(e) => setQuantity(e)}
+            onChange={(e) => setQuantity(e.nativeEvent.data)}
           />
         </div>)
     }
@@ -104,14 +102,18 @@ function FeatureProduct({
   }
 
   const handleOrder = () => {
+    const productCode = productDetail[packaging].productCode;
+    const unit = productDetail[packaging].unit;
     const pPrice = productDetail[packaging].price;
-    const pPackaging = productDetail[packaging].packagingDescEng;
+    const pPackaging = productDetail[packaging].packageDescEng;
     setSelectedProduct(null)
     addProduct({
+      productCode,
       id,
       brand,
       name,
       pPrice,
+      unit,
       pPackaging,
       quantity,
     });

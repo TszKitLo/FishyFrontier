@@ -12,8 +12,8 @@ export default function Order() {
   const [createOrder, setCreateOrder] = useState({});
   const [totalAmount, setTotalAmount] = useState(0);
 
-  // console.log(totalAmount);
 
+  console.log(createOrder);
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
@@ -23,7 +23,7 @@ export default function Order() {
     }));
   };
 
-  console.log(tempOrder);
+  // console.log(tempOrder);
   // console.log(createOrder);
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,8 +40,8 @@ export default function Order() {
 
   useEffect(() => {
     const extractedInfoArray = order.map(item => {
-      const { id, price, name, size, quantity } = item;
-      return { productCode: id, price, name, unit: size, qty: Number(quantity), taxAmount: price * 0.13 };
+      const { productCode, id, pPrice, name, unit, pPackage, quantity } = item;
+      return { productCode, price : pPrice, name, unit, qty: Number(quantity), taxAmount: Number((pPrice * 0.13).toFixed(2)) };
     });
 
     setTempOrder(extractedInfoArray);
@@ -55,7 +55,7 @@ export default function Order() {
   useEffect(() => {
     const total = tempOrder.reduce((acc, item) => {
       return acc + (item.price + item.taxAmount) * item.qty;
-    }, 0);
+    }, 0.0);
     setTotalAmount(total);
   }, [createOrder]);
 
@@ -162,6 +162,7 @@ export default function Order() {
                     <tr>
                       <th scope="col">Item Number</th>
                       <th scope="col">Brand/Product Name</th>
+                      <th scope="col">Quantity</th>
                       <th scope="col">Unit</th>
                       <th scope="col">Price</th>
                       <th scope="col">Tax</th>
@@ -172,6 +173,7 @@ export default function Order() {
                       <tr key={result.productCode}>
                         <td>{result.productCode}</td>
                         <td>{result.name}</td>
+                        <td>{result.qty}</td>
                         <td>{result.unit}</td>
                         <td>${result.price}</td>
                         <td>${result.taxAmount}</td>
