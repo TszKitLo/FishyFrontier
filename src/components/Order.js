@@ -59,15 +59,13 @@ export const Order = ({ orderId, customerName, orderDate, orderDetails }) => {
           </thead>
           <tbody>
             {orderDetails.map((o) => {
-
               return (
                 <tr>
                   <td>{o.salesOrderDetail.id}</td>
                   <td>{o.salesOrderDetail.productID}</td>
                   <td>
                     {o.productBrandEng || ""}{" "}
-                    {o.productPackageDescriptionEng
-                      || ""}
+                    {o.productPackageDescriptionEng || ""}
                   </td>
                   <td>{o.salesOrderDetail.unit}</td>
                   <td>{o.salesOrderDetail.qty}</td>

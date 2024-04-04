@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import { ListOrder } from "../service/order-service";
 
 export default function PickingList() {
-
-  const [orderList, setOrderList] = useState([])
+  const [orderList, setOrderList] = useState([]);
   useEffect(() => {
     async function fetchOrder() {
       try {
@@ -17,7 +16,7 @@ export default function PickingList() {
     }
 
     fetchOrder();
-  }, [])
+  }, []);
 
   console.log(orderList);
   return (

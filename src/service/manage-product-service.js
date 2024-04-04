@@ -1,5 +1,4 @@
-export const ManageProduct = async () => 
-{
+export const ManageProduct = async () => {
   let apiUrl = `${process.env.REACT_APP_API_URL}/inventory/list`;
 
   try {
@@ -9,7 +8,7 @@ export const ManageProduct = async () =>
       return new Error(`HTTP error! status: ${response.status}`);
     }
     const text = await response.text();
-    console.log(`api return: ${text.success}`)
+    console.log(`api return: ${text.success}`);
     try {
       const data = JSON.parse(text);
       return data;

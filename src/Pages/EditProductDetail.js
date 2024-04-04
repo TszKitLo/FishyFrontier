@@ -72,7 +72,7 @@ function EditProductDetail() {
                     <div className="col">
                       <label htmlFor="cost">Cost</label>
                       <div className="input-group">
-                      <span className="input-group-text">$</span>
+                        <span className="input-group-text">$</span>
                         <input
                           type="number"
                           className="form-control"
@@ -87,7 +87,7 @@ function EditProductDetail() {
                     <div className="col">
                       <label htmlFor="sales_price">Sales Price </label>
                       <div className="input-group">
-                      <span className="input-group-text">$</span>
+                        <span className="input-group-text">$</span>
                         <input
                           type="number"
                           className="form-control"

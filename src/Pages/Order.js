@@ -10,7 +10,7 @@ export default function Order() {
   const { order } = useOrder();
   const [tempOrder, setTempOrder] = useState([]);
   const [createOrder, setCreateOrder] = useState({});
-  const [totalAmount, setTotalAmount] = useState(0); 
+  const [totalAmount, setTotalAmount] = useState(0);
 
   // console.log(totalAmount);
 
@@ -34,16 +34,16 @@ export default function Order() {
       // navigate('/');
       console.log("sent");
     } catch (error) {
-      console.log(error);;
+      console.log(error);
     }
   };
 
   useEffect(() => {
     const extractedInfoArray = order.map(item => {
       const { id, price, name, size, quantity } = item;
-      return { productCode : id, price,  name, unit: size, qty: Number(quantity), taxAmount: price*0.13 };
+      return { productCode: id, price, name, unit: size, qty: Number(quantity), taxAmount: price * 0.13 };
     });
-    
+
     setTempOrder(extractedInfoArray);
   }, [order]);
 
@@ -81,7 +81,9 @@ export default function Order() {
               <form>
                 <div className="row mb-3">
                   <div className="col-auto">
-                    <label htmlFor="clientName" className="col-form-label">Client name: </label>
+                    <label htmlFor="clientName" className="col-form-label">
+                      Client name:{" "}
+                    </label>
                   </div>
                   <div className="col">
                     <input
@@ -181,7 +183,9 @@ export default function Order() {
 
               <div className="col-lg-9 d-flex justify-content-end align-items-center mt-4">
                 <Link to="/view-inventory">
-                  <button className="btn btn-outline-dark py-2 me-5">Back</button>
+                  <button className="btn btn-outline-dark py-2 me-5">
+                    Back
+                  </button>
                 </Link>
                 <button className="btn btn-dark ms-5" onClick={handleSubmit}>
                   Confirm

@@ -41,9 +41,9 @@ function SideBar() {
           >
             Setting
           </Link>
-          <Link 
-          to="/"
-          className="btn btn-sm btn-outline-dark rounded-pill me-2 mb-4"
+          <Link
+            to="/"
+            className="btn btn-sm btn-outline-dark rounded-pill me-2 mb-4"
           >
             Sign Out
           </Link>

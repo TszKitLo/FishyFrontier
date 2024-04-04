@@ -150,9 +150,9 @@ function EditProductDetail() {
 
             <div className="col-lg-6 d-flex flex-column justify-content-center align-items-center">
 
-            <input type="file" />
+              <input type="file" />
 
-                <button className="btn btn-primary mt-3" disabled>Upload Image</button>
+              <button className="btn btn-primary mt-3" disabled>Upload Image</button>
             </div>
           </div>
         </div>

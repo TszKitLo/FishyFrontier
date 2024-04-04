@@ -6,15 +6,14 @@ import { ManageProduct } from "../service/manage-product-service";
 
 export default function ManageInventory() {
   const [search, setSearch] = useState([]);
-  const [searchInput, setSearchInput] = useState("")
+  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
     async function fetchData() {
       try {
         const resp = await ManageProduct();
         setSearch(resp.productInventoryDetailList);
-      } catch (error) {
-      }
+      } catch (error) { }
     }
     fetchData();
   }, []);
@@ -24,14 +23,12 @@ export default function ManageInventory() {
   };
 
   const filterProducts = (products, searchTerm) => {
-    return products.filter(
-      (product) =>
-        product.productEng.toLowerCase().includes(searchTerm.toLowerCase())
+    return products.filter((product) =>
+      product.productEng.toLowerCase().includes(searchTerm.toLowerCase()),
     );
   };
 
   const filteredProducts = filterProducts(search, searchInput);
-
 
   return (
     <div className="container mt-5 py-4 px-xl-5">

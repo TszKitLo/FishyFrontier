@@ -1,4 +1,3 @@
-
 export const ListOrder = async () => {
   const apiUrl = `${process.env.REACT_APP_API_URL}/order/list`;
 
@@ -18,7 +17,6 @@ export const ListOrder = async () => {
       console.error("The response is not valid JSON:", text);
       throw new Error("The response is not valid JSON.");
     }
-
   } catch (error) {
     console.error("Fetching error: ", error);
     throw error;

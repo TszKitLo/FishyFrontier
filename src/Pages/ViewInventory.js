@@ -23,7 +23,6 @@ export default function ViewInventory() {
   }, []);
 
   function ProductList() {
-    console.log(productList);
     if (productList.length === 0) {
       return <></>;
     } else {
@@ -50,7 +49,7 @@ export default function ViewInventory() {
 
   const FilterBar = () => {
     return (
-      <ButtonToolbar className="justify-content-between" paddingY="8px">
+      <ButtonToolbar className="justify-content-between" >
         <div>
           {" "}
           <Button
