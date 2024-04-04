@@ -141,7 +141,7 @@ function EditProductDetail() {
                       </Link>
                     </div>
                     <div className="col">
-                      <button className="btn btn-dark py-2 w-100">Save</button>
+                      <button className="btn btn-dark py-2 w-100" disabled>Save</button>
                     </div>
                   </div>
                 </form>
@@ -149,12 +149,10 @@ function EditProductDetail() {
             </div>
 
             <div className="col-lg-6 d-flex flex-column justify-content-center align-items-center">
-              <img
-                className="rounded-start bg-dark cover w-100 h-150"
-                alt="Product Image"
-                src={Image}
-              />
-                <button className="btn btn-primary mt-3">Upload Image</button>
+
+            <input type="file" />
+
+                <button className="btn btn-primary mt-3" disabled>Upload Image</button>
             </div>
           </div>
         </div>

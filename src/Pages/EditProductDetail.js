@@ -8,6 +8,8 @@ import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 function EditProductDetail() {
   let location = useLocation();
   const [product, setProduct] = useState(location.state ? location.state.product : null);
+  const imageLink = `${process.env.REACT_APP_API_URL}${product.imageLink}`
+
 
   console.log(product);
 
@@ -153,7 +155,7 @@ function EditProductDetail() {
                       </Link>
                     </div>
                     <div className="col">
-                      <button className="btn btn-dark py-2 w-100">
+                      <button className="btn btn-dark py-2 w-100" disabled>
                         Save Change
                       </button>
                     </div>
@@ -166,9 +168,9 @@ function EditProductDetail() {
               <img
                 className="rounded-start bg-dark cover w-100 h-150"
                 alt="Product Image"
-                src={Image}
+                src={imageLink}
               />
-              <button className="btn btn-primary mt-3">Update Image</button>
+              <button className="btn btn-primary mt-3" disabled>Update Image</button>
             </div>
           </div>
         </div>

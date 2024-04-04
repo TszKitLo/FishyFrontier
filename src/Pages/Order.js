@@ -2,48 +2,52 @@ import SideBar from "../components/SideBar";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CreateProduct } from "../service/create-order";
+import { useOrder } from "../salesContext";
+
 
 export default function Order() {
-  // use order from useOrder later
 
-  const [search, setSearch] = useState([
-    { product_id: "1", qty: 10, unit: "bag", price: 20, tax_amount: 5 },
-    { product_id: "2", qty: 15, unit: "bag", price: 30, tax_amount: 6 },
-  ]);
+  const { order } = useOrder();
 
-  const [order, setOrder] = useState({});
+  const [tempOrder, setTempOrder] = useState([]);
+  
+  const [createOrder, setCreateOrder] = useState({});
 
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
-    setOrder((prevOrder) => ({
+    setCreateOrder((prevOrder) => ({
       ...prevOrder,
       [name]: value,
     }));
   };
 
+  // console.log(createOrder);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(order);
+    // console.log(createOrder);
     try {
-      const res = await CreateProduct(order)
-      // const res = await fetch('/api/auth/signin', {
-      //   method : 'POST',
-      //   headers : {
-      //     'Content-Type' : 'application/json',
-      //   },
-      //   body : JSON.stringify(order),
-      // });
+      const res = await CreateProduct(createOrder)
 
       // navigate('/');
+      console.log("sent");
     } catch (error) {
       console.log(error);;
     }
   };
 
   useEffect(() => {
+    const extractedInfoArray = order.map(item => {
+      const { id, price, name, size, quantity } = item;
+      return { productCode : id, price,  name, unit: size, qty: Number(quantity), taxAmount: price*0.13 };
+    });
+    
+    setTempOrder(extractedInfoArray);
+  }, []);
+
+  useEffect(() => {
     const currentDate = new Date().toISOString().split("T")[0];
-    setOrder({ order_create: currentDate, details: search });
+    setCreateOrder({ orderCreateDate: currentDate, details: tempOrder });
   }, []);
 
   return (
@@ -82,22 +86,7 @@ export default function Order() {
 
                 <div className="row mb-3">
                   <div className="col-auto">
-                    <label htmlFor="order_create" className="col-form-label">Order Date: </label>
-                  </div>
-                  <div className="col">
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="name"
-                      name="name"
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-
-                <div className="row mb-3">
-                  <div className="col-auto">
-                    <label htmlFor="order_create" className="col-form-label">
+                    <label htmlFor="orderCreateDate" className="col-form-label">
                       Order Date:{" "}
                     </label>
                   </div>
@@ -105,10 +94,10 @@ export default function Order() {
                     <input
                       type="date"
                       className="form-control"
-                      id="order_create"
-                      name="order_create"
+                      id="orderCreateDate"
+                      name="orderCreateDate"
                       onChange={handleChange}
-                      defaultValue={order.order_create}
+                      defaultValue={createOrder.orderCreateDate}
                     />
                   </div>
                 </div>
@@ -116,7 +105,7 @@ export default function Order() {
                 <div className="row mb-3">
                   <div className="col-auto">
                     <label
-                      htmlFor="expected_delivery_date"
+                      htmlFor="expectedDeliveryDate"
                       className="col-form-label"
                     >
                       Delivery Date:{" "}
@@ -126,8 +115,8 @@ export default function Order() {
                     <input
                       type="date"
                       className="form-control"
-                      id="expected_delivery_date"
-                      name="expected_delivery_date"
+                      id="expectedDeliveryDate"
+                      name="expectedDeliveryDate"
                       onChange={handleChange}
                     />
                   </div>
@@ -150,22 +139,6 @@ export default function Order() {
                   </div>
                 </div>
 
-                <div className="row mb-3">
-                  <div className="col-auto">
-                    <label htmlFor="unit" className="col-form-label">
-                      Total Unit:{" "}
-                    </label>
-                  </div>
-                  <div className="col">
-                    <input
-                      type="number"
-                      className="form-control"
-                      id="unit"
-                      name="unit"
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
               </form>
             </div>
 
@@ -182,13 +155,13 @@ export default function Order() {
                     </tr>
                   </thead>
                   <tbody>
-                    {search.map((result) => (
-                      <tr key={result.product_id}>
-                        <td>{result.product_id}</td>
-                        <td>{result.unit}</td>
-                        <td>{result.qty}</td>
+                    {tempOrder.map((result) => (
+                      <tr key={result.productCode}>
+                        <td>{result.productCode}</td>
+                        <td>{result.name}</td>
+                        <td>{result.size}</td>
                         <td>${result.price}</td>
-                        <td>{result.tax_amount}</td>
+                        <td>${result.taxAmount}</td>
                       </tr>
                     ))}
                   </tbody>

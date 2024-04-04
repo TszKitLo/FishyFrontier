@@ -51,7 +51,7 @@ function FeatureProduct({
           type="number"
           placeholder="Quantity"
           min={0}
-          onChange={(e) => setQuantity(e)}
+          onChange={(e) => setQuantity(e.target.value)}
         />
       </div>
     );
