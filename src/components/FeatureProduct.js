@@ -14,11 +14,11 @@ function FeatureProduct({
   const link = "#/products/" + id;
   const [selectedProduct, setSelectedProduct] = useState(null)
   const [productDetail, setProductDetail] = useState([]);
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const [packaging, setPackaging] = useState(0);
-  const { order, addProduct } = useOrder();
+  const { addProduct } = useOrder();
   const imageLink = `${process.env.REACT_APP_API_URL}${image}`;
-  
+
   // Define the function to fetch product details inside the useEffect hook.
   async function fetchProduct(productId) {
     try {
@@ -40,7 +40,7 @@ function FeatureProduct({
     if (stock === 0) {
       return null;
     }
-    
+
     return (<Card>
       <Card.Body>
         <Card.Text>
@@ -72,9 +72,9 @@ function FeatureProduct({
     if (productDetail.length !== 0) {
       console.log("enter the modal...");
 
-    const hasAvailableStock = productDetail.some(
-      (product) => product.stock > 0
-    );
+      const hasAvailableStock = productDetail.some(
+        (product) => product.stock > 0
+      );
       return (
         <div style={{ textAlign: "center" }}>
           <img
@@ -103,8 +103,8 @@ function FeatureProduct({
           {hasAvailableStock && <input
             type="number"
             placeholder="Quantity"
-            min={0}
-            onChange={(e) => setQuantity(e.nativeEvent.data)}
+            min={1}
+            onChange={(e) => setQuantity(e.target.value)}
           />}
         </div>)
     }
@@ -117,18 +117,20 @@ function FeatureProduct({
     const unit = productDetail[packaging].unit;
     const pPrice = productDetail[packaging].price;
     const pPackaging = productDetail[packaging].packageDescEng;
+    if (quantity > 0) {
+      addProduct({
+        productCode,
+        id,
+        brand,
+        name,
+        pPrice,
+        unit,
+        pPackaging,
+        quantity,
+      });
+    }
 
     setSelectedProduct(null)
-    addProduct({
-      productCode,
-      id,
-      brand,
-      name,
-      pPrice,
-      unit,
-      pPackaging,
-      quantity,
-    });
 
   };
 
@@ -183,8 +185,8 @@ function FeatureProduct({
                 <Modal.Header closeButton></Modal.Header>
                 <Modal.Body>{ModalBody()}</Modal.Body>
                 <Modal.Footer>
-                  <Button variant="primary" onClick={handleOrder} 
-                  disabled={!productDetail.some(product => product.stock > 0)}>
+                  <Button variant="primary" onClick={handleOrder}
+                    disabled={!productDetail.some(product => product.stock > 0)}>
                     Add to cart
                   </Button>
                 </Modal.Footer>

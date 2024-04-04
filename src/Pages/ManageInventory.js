@@ -97,7 +97,7 @@ export default function ManageInventory() {
                               </Link>
                             </td>
                             <td>{result.brandChi}</td>
-                            <td>{result.productEng}/{result.productChi} ({result.packageDescEng})</td>
+                            <td>{result.productEng}/{result.productChi} ({result.unit} of {result.packageDescEng})</td>
                             <td>{result.stock}</td>
                             <td>${result.price}</td>
                             <td>{result.tax}</td>

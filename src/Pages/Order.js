@@ -3,15 +3,14 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CreateProduct } from "../service/create-order";
 import { useOrder } from "../salesContext";
-
+import { useHistory } from 'react-router-dom';
 
 export default function Order() {
-
-  const { order } = useOrder();
+  const { order, setOrder } = useOrder();
   const [tempOrder, setTempOrder] = useState([]);
   const [createOrder, setCreateOrder] = useState({});
   const [totalAmount, setTotalAmount] = useState(0);
-
+  const history = useHistory();
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -22,32 +21,46 @@ export default function Order() {
     }));
   };
 
+
   // console.log(tempOrder);
   const handleSubmit = async (e) => {
     e.preventDefault();
     // console.log(createOrder);
     try {
-      const res = await CreateProduct(createOrder)
+      await CreateProduct(createOrder)
 
       // navigate('/');
       console.log("sent");
+      setOrder([])
+      history.push('/view-inventory');
     } catch (error) {
       console.log(error);
     }
+
+
   };
 
   useEffect(() => {
     const extractedInfoArray = order.map(item => {
-      const { productCode, id, pPrice, name, unit, pPackage, quantity } = item;
-      return { productCode, price : pPrice, name, unit, qty: Number(quantity), taxAmount: Number((pPrice * 0.13).toFixed(2)) };
+      const { productCode, id, pPrice, name, unit, pPackaging, quantity } = item;
+      return { productCode, price: pPrice, name, unit, qty: Number(quantity), taxAmount: Number((pPrice * 0.13).toFixed(2)), package: pPackaging };
     });
 
     setTempOrder(extractedInfoArray);
   }, [order]);
 
   useEffect(() => {
-    const currentDate = new Date().toISOString().split("T")[0];
-    setCreateOrder({ orderCreateDate: currentDate, details: tempOrder });
+    // Getting the current date
+    const currentDate = new Date();
+    const currentDateString = currentDate.toISOString().split("T")[0];
+
+    // Calculating the future date, 7 days from the current date
+    const futureDate = new Date();
+    futureDate.setDate(currentDate.getDate() + 7);
+    const futureDateString = futureDate.toISOString().split("T")[0];
+    const clientName = `Client @ ${currentDate.toISOString()}`
+
+    setCreateOrder({ orderCreateDate: currentDateString, details: tempOrder, expectedDeliveryDate: futureDateString, clientName: clientName });
   }, [tempOrder]);
 
   useEffect(() => {
@@ -57,7 +70,7 @@ export default function Order() {
     setTotalAmount(total.toFixed(2));
   }, [createOrder]);
 
-
+  console.log("tempOrder", tempOrder)
   return (
     <div className="container mt-5 py-4 px-xl-5">
       <div className="row mb-4 mt-lg-3">
@@ -90,6 +103,7 @@ export default function Order() {
                       id="clientName"
                       name="clientName"
                       onChange={handleChange}
+                      defaultValue={createOrder.clientName}
                     />
                   </div>
                 </div>
@@ -128,6 +142,7 @@ export default function Order() {
                       id="expectedDeliveryDate"
                       name="expectedDeliveryDate"
                       onChange={handleChange}
+                      defaultValue={createOrder.expectedDeliveryDate}
                     />
                   </div>
                 </div>
@@ -161,6 +176,7 @@ export default function Order() {
                       <th scope="col">Item Number</th>
                       <th scope="col">Brand/Product Name</th>
                       <th scope="col">Quantity</th>
+                      <th scope="col">Packaging</th>
                       <th scope="col">Unit</th>
                       <th scope="col">Price</th>
                       <th scope="col">Tax</th>
@@ -172,6 +188,7 @@ export default function Order() {
                         <td>{result.productCode}</td>
                         <td>{result.name}</td>
                         <td>{result.qty}</td>
+                        <td>{result.package}</td>
                         <td>{result.unit}</td>
                         <td>${result.price}</td>
                         <td>${result.taxAmount}</td>
@@ -190,6 +207,7 @@ export default function Order() {
                 <button className="btn btn-dark ms-5" onClick={handleSubmit}>
                   Confirm
                 </button>
+
               </div>
             </div>
           </div>

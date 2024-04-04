@@ -2,6 +2,7 @@ import { Card, Table, Form, Button } from "react-bootstrap";
 import { useState } from "react";
 
 export const Order = ({ orderId, customerName, orderDate, orderDetails }) => {
+  console.log(orderDetails)
   function RadioGroup() {
     const [selectedOption, setSelectedOption] = useState("option1");
 
@@ -50,9 +51,10 @@ export const Order = ({ orderId, customerName, orderDate, orderDetails }) => {
         <Table>
           <thead>
             <tr>
-              <th>#</th>
               <th>Product #</th>
-              <th>Product Description</th>
+              <th>Product Description (Eng)</th>
+              <th> Product Description (Chi)</th>
+              <th> Packaging </th>
               <th>Unit</th>
               <th>Quantities</th>
             </tr>
@@ -61,12 +63,14 @@ export const Order = ({ orderId, customerName, orderDate, orderDetails }) => {
             {orderDetails.map((o) => {
               return (
                 <tr>
-                  <td>{o.salesOrderDetail.id}</td>
-                  <td>{o.salesOrderDetail.productID}</td>
+                  <td>{o.productCodeItemNum}</td>
                   <td>
-                    {o.productBrandEng || ""}{" "}
-                    {o.productPackageDescriptionEng || ""}
+                    <b>{o.productBrandEng || ""}</b> {o.productCategoryNameEng}
                   </td>
+                  <td>
+                    <b>{o.productBrandChi || ""}</b> {o.productCategoryNameChi}
+                  </td>
+                  <td>{o.productPackageDescriptionEng}</td>
                   <td>{o.salesOrderDetail.unit}</td>
                   <td>{o.salesOrderDetail.qty}</td>
                 </tr>
