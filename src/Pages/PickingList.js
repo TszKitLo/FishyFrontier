@@ -18,6 +18,7 @@ export default function PickingList() {
     fetchOrder();
   }, []);
 
+  console.log(orderList);
   return (
     <div className="container mt-5 py-4 px-xl-5">
       <div className="row mb-4 mt-lg-3">
@@ -30,15 +31,18 @@ export default function PickingList() {
           <div className="d-flex flex-column h-100">
             <div className="row mb-3">Picking List</div>
             {orderList.map((order) => {
-              return (
-                <Order
-                  key={order.salesOrderHeader.id}
-                  orderId={order.salesOrderHeader.id}
-                  customerName={order.salesOrderHeader.customer}
-                  orderDate={order.salesOrderHeader.orderDate}
-                  orderDetails={order.salesOrderDetails}
-                />
-              );
+              if (order.salesOrderDetails.length > 0) {
+                return (
+                  <Order
+                    key={order.salesOrderHeader.id}
+                    orderId={order.salesOrderHeader.id}
+                    customerName={order.salesOrderHeader.customer}
+                    orderDate={order.salesOrderHeader.orderDate}
+                    orderDetails={order.salesOrderDetails}
+                  />
+                );
+              }
+
             })}
           </div>
         </div>
