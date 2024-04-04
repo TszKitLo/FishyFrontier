@@ -56,7 +56,7 @@ export default function Order() {
     const total = tempOrder.reduce((acc, item) => {
       return acc + (item.price + item.taxAmount) * item.qty;
     }, 0.0);
-    setTotalAmount(total);
+    setTotalAmount(total.toFixed(2));
   }, [createOrder]);
 
 

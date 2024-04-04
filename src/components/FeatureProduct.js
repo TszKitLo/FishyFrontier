@@ -36,6 +36,11 @@ function FeatureProduct({
 
   const RadioCard = ({ packageName, index, stock, price, unit }) => {
     console.log(packaging, index)
+
+    if (stock === 0) {
+      return null;
+    }
+    
     return (<Card>
       <Card.Body>
         <Card.Text>
@@ -63,8 +68,13 @@ function FeatureProduct({
   }
 
   function ModalBody() {
+
     if (productDetail.length !== 0) {
-      console.log("enter the modal...")
+      console.log("enter the modal...");
+
+    const hasAvailableStock = productDetail.some(
+      (product) => product.stock > 0
+    );
       return (
         <div style={{ textAlign: "center" }}>
           <img
@@ -90,12 +100,12 @@ function FeatureProduct({
             </Form>
           </div>
 
-          <input
+          {hasAvailableStock && <input
             type="number"
             placeholder="Quantity"
             min={0}
             onChange={(e) => setQuantity(e.nativeEvent.data)}
-          />
+          />}
         </div>)
     }
     return <></>
@@ -107,6 +117,7 @@ function FeatureProduct({
     const unit = productDetail[packaging].unit;
     const pPrice = productDetail[packaging].price;
     const pPackaging = productDetail[packaging].packageDescEng;
+
     setSelectedProduct(null)
     addProduct({
       productCode,
@@ -172,7 +183,8 @@ function FeatureProduct({
                 <Modal.Header closeButton></Modal.Header>
                 <Modal.Body>{ModalBody()}</Modal.Body>
                 <Modal.Footer>
-                  <Button variant="primary" onClick={handleOrder}>
+                  <Button variant="primary" onClick={handleOrder} 
+                  disabled={!productDetail.some(product => product.stock > 0)}>
                     Add to cart
                   </Button>
                 </Modal.Footer>
