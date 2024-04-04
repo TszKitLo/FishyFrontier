@@ -70,26 +70,33 @@ function EditProductDetail() {
 
                   <div className="row mb-3">
                     <div className="col">
-                      <label htmlFor="cost">Cost </label>
-                      <input
-                        type="number"
-                        className="form-control"
-                        id="cost"
-                        name="cost"
-                        value={product.price}
-                        onChange={handleChange}
-                      />
+                      <label htmlFor="cost">Cost</label>
+                      <div className="input-group">
+                      <span className="input-group-text">$</span>
+                        <input
+                          type="number"
+                          className="form-control"
+                          id="cost"
+                          name="cost"
+                          value={product.cost}
+                          onChange={handleChange}
+                        />
+                      </div>
                     </div>
+
                     <div className="col">
                       <label htmlFor="sales_price">Sales Price </label>
-                      <input
-                        type="number"
-                        className="form-control"
-                        id="sales_price"
-                        name="sales_price"
-                        value={product.price}
-                        onChange={handleChange}
-                      />
+                      <div className="input-group">
+                      <span className="input-group-text">$</span>
+                        <input
+                          type="number"
+                          className="form-control"
+                          id="sales_price"
+                          name="sales_price"
+                          value={product.price}
+                          onChange={handleChange}
+                        />
+                      </div>
                     </div>
                   </div>
 

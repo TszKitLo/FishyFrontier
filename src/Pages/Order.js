@@ -12,7 +12,7 @@ export default function Order() {
   const [createOrder, setCreateOrder] = useState({});
   const [totalAmount, setTotalAmount] = useState(0); 
 
-  console.log(totalAmount);
+  // console.log(totalAmount);
 
   const handleChange = (e) => {
     e.preventDefault();
