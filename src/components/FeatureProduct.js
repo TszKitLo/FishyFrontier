@@ -176,6 +176,7 @@ function FeatureProduct({
                 variant="dark"
                 style={{ width: "45%", align: "right" }}
                 href={link}
+                disabled
               >
                 {" "}
                 Details{" "}
