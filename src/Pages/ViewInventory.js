@@ -67,14 +67,14 @@ export default function ViewInventory() {
             style={{ marginRight: 10 }}
             size="xs"
           >
-            Veggie
+            Dessert
           </Button>
           <Button
             variant="outline-primary"
             style={{ marginRight: 10 }}
             size="xs"
           >
-            Sauce
+            Dim Sum
           </Button>
         </div>
 
