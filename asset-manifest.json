@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/FishyFrontier/static/css/main.51b270b5.css",
-    "main.js": "/FishyFrontier/static/js/main.7724ae1c.js",
+    "main.js": "/FishyFrontier/static/js/main.f0abfdde.js",
     "static/media/banner-2.jpg": "/FishyFrontier/static/media/banner-2.e792fe61a57973a5b60b.jpg",
     "static/media/banner-1.jpg": "/FishyFrontier/static/media/banner-1.1f5bb6ba30a89f69db3e.jpg",
     "static/media/nillkin-case-1.jpg": "/FishyFrontier/static/media/nillkin-case-1.60dec4fb7de719b33e51.jpg",
     "static/media/banner-0.jpg": "/FishyFrontier/static/media/banner-0.83a86819981256ecaebe.jpg",
     "index.html": "/FishyFrontier/index.html",
     "main.51b270b5.css.map": "/FishyFrontier/static/css/main.51b270b5.css.map",
-    "main.7724ae1c.js.map": "/FishyFrontier/static/js/main.7724ae1c.js.map"
+    "main.f0abfdde.js.map": "/FishyFrontier/static/js/main.f0abfdde.js.map"
   },
   "entrypoints": [
     "static/css/main.51b270b5.css",
-    "static/js/main.7724ae1c.js"
+    "static/js/main.f0abfdde.js"
   ]
 }
