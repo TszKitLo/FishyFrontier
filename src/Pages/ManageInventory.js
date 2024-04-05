@@ -100,7 +100,7 @@ export default function ManageInventory() {
                             <td>{result.productEng}/{result.productChi} ({result.unit} of {result.packageDescEng})</td>
                             <td>{result.stock}</td>
                             <td>${result.price}</td>
-                            <td>{result.tax}</td>
+                            <td>${result.tax}</td>
                             <td>{result.expiryDate}</td>
                           </tr>
                         ))
